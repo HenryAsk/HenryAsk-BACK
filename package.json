@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "dev": "ts-node-dev --respawn src/index.ts"
   },
   "repository": {
     "type": "git",
@@ -16,5 +17,13 @@
   "bugs": {
     "url": "https://github.com/HenryAsk/HenryAsk-BACK/issues"
   },
-  "homepage": "https://github.com/HenryAsk/HenryAsk-BACK#readme"
+  "homepage": "https://github.com/HenryAsk/HenryAsk-BACK#readme",
+  "devDependencies": {
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.6.3"
+  },
+  "dependencies": {
+    "@typegoose/typegoose": "^9.8.1",
+    "mongoose": "^6.3.1"
+  }
 }
