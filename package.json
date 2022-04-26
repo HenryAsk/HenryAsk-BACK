@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@typegoose/typegoose": "^9.8.1",
+    "dotenv": "^16.0.0",
     "mongoose": "^6.3.1"
   }
 }
