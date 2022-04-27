@@ -7,7 +7,7 @@ y luego se crea la instancia en la base de datos.*/
 export const postTheoric = async (req: Request, res: Response) => {
   try {
     const { title, content, author, images, comments } = req.body;
-    let instancia: object;
+    let instancia;
     if (!title || !content || !author) {
       return res.status(404).json({
         error:
