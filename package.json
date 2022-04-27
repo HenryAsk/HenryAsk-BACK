@@ -6,8 +6,7 @@
   "scripts": {
     "start": "node ./dist/app.js",
     "build": "tsc",
-    "dev": "ts-node-dev --respawn src/index.ts",
-    "start": "nodemon -L"
+    "dev": "ts-node-dev --respawn src/index.ts"
   },
   "repository": {
     "type": "git",

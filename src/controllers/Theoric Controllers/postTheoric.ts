@@ -9,21 +9,39 @@ export const postTheoric = async (req: Request, res: Response) => {
     const { title, content, author, images, comments } = req.body;
     let instancia: object;
     if (!title || !content || !author) {
-      return res.status(404).json({ error: "" });
-    } else if (images && comments) {
+      return res.status(404).json({
+        error:
+          "el título, contenido y autor son requisitos necesarios para hacer un posteo.",
+      });
+    }
+    if (title) {
+      const alreadyExists = await Theoric.findOne({ title: title });
+      if (alreadyExists) {
+        return res.status(404).json({
+          error: "Ya existe un teórico con este título",
+        });
+      }
+    }
+    if (images && comments) {
       instancia = { title, content, author, images, comments };
       await Theoric.create(instancia);
-    } else if (images && !comments) {
+      return res.json("Material guardado exitosamente.");
+    }
+    if (images && !comments) {
       instancia = { title, content, author, images };
       await Theoric.create(instancia);
-    } else if (!images && comments) {
+      return res.json("Material guardado exitosamente.");
+    }
+    if (!images && comments) {
       instancia = { title, content, author, comments };
       await Theoric.create(instancia);
-    } else {
+      return res.json("Material guardado exitosamente.");
+    }
+    {
       instancia = { title, content, author };
       await Theoric.create(instancia);
+      return res.json("Material guardado exitosamente.");
     }
-    return res.json("Material guardado exitosamente. " + instancia);
   } catch (err) {
     console.log("Algo salió mal en el controller postTheoric: ", err);
   }

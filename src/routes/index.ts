@@ -1,17 +1,17 @@
-import { Router } from 'express';
-const router = Router();
+const router = require("express").Router();
 
- 
-// Import routers
-// import userRoute from './userRoute';
+/*IMPORT RUTAS THEORIC*/
+import { postTheoric } from "../controllers/Theoric Controllers/postTheoric";
+import { editTheoric } from "../controllers/Theoric Controllers/editTheoric";
+import { deleteTheoric } from "../controllers/Theoric Controllers/deleteTheoric";
 
-router.get('/', (req, res) => {
-    console.log('Hola maquinola')
-    res.send('Acá taaaaaaaaa')
-})
+/*RUTAS POST*/
+router.post("/theoric/posttheoric", postTheoric);
 
-//Config routers
-router.use('/user', router);
+/*RUTAS PUT*/
+router.put("/theoric/edittheoric", editTheoric);
 
+/*RUTAS DELETE*/
+router.delete("/theoric/deletetheoric", deleteTheoric);
 
 module.exports = router;
