@@ -19,10 +19,10 @@ export class User{
     @prop({ enum: Gender, addNullToEnum: true })
     gender?: Gender;
 
-    @prop()
+    @prop({ type: () => String })
     country?: string;
 
-    @prop()
+    @prop({ type: () => String })
     city?: string;
 
     @prop({ required: true })
