@@ -36,8 +36,7 @@ export const postTheoric = async (req: Request, res: Response) => {
       instancia = { title, content, author, comments };
       await Theoric.create(instancia);
       return res.json("Material guardado exitosamente.");
-    }
-    {
+    } else {
       instancia = { title, content, author };
       await Theoric.create(instancia);
       return res.json("Material guardado exitosamente.");
