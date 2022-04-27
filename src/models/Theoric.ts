@@ -1,7 +1,8 @@
 const { getModelForClass, prop } = require("@typegoose/typegoose");
 
+/*Aquí está el modelo de los contenidos teóricos.*/
 export class Theoric {
-  @prop({ type: () => String, required: true, trim: true })
+  @prop({ type: String, required: true, trim: true })
   title: string;
 
   @prop({ type: String, required: true })
