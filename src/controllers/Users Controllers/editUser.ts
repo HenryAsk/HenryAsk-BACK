@@ -18,7 +18,7 @@ export const EDIT_USER = async (req: Request, res: Response) => {
         } = req.body;
 
         if(!id){
-            res.status(404).send('')
+            res.status(404).send('Ha ocurrido un error al editar el usuario.')
         }
 
         const userEdited = await User.updateOne({ _id: id }, {
@@ -32,9 +32,9 @@ export const EDIT_USER = async (req: Request, res: Response) => {
             biography: biography && biography,
             github: github && github,
             linkedin: linkedin && linkedin
-        })
+        });
 
-        res.status(200).send('Usuario actualizado.')
+        res.status(200).json(`${userEdited.matchedCount} document has been matched and ${userEdited.modifiedCount} document has been modified `);
 
     } catch(err: any | unknown) {
 
