@@ -21,10 +21,13 @@ export const getTheoric = async (req: Request, res: Response) => {
       }
     } else if (author) {
       const search = await Theoric.find({ author: author });
-      if (search) {
-        contenido = search;
+      if (typeof search === "object" && search.length === 0) {
+        return res.status(404).json({
+          error:
+            "No se ha encontrado. Puede ser por tres motivos. 1)El autor no coincide con ningúno en la base de datos. 2)Si quiere enviar un solo autor, hágalo como string. 3)Si quiere enviar más de un autor, hágalo como Array<string>",
+        });
       } else {
-        contenido = { error: "Este autor no existe." };
+        contenido = search;
       }
     } else if (title && author) {
       const search = await Theoric.find({ title: title, author: author });
