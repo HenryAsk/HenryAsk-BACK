@@ -12,6 +12,7 @@ export const GET_USER_BY_ID = async(req: Request, res: Response) => {
                 userById = {
                     first_name: userById.first_name,
                     last_name: userById.last_name,
+                    user_name: userById.user_name,
                     email: userById.email,
                     role: userById.role,
                     country: userById.country,

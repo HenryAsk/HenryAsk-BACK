@@ -6,11 +6,13 @@ const router = Router();
 // import { editTheoric } from "../controllers/Theoric Controllers/editTheoric";
 // import { deleteTheoric } from "../controllers/Theoric Controllers/deleteTheoric";
 
-import { allUsers, userById } from './userRoute';
+import { allUsers, userById, userByMail } from './userRoute';
 
 /*RUTAS GET*/
+//NO CAMBIAR ORDEN DE LAS RUTAS//
 router.use("/user", allUsers);
 router.use("/user", userById);
+router.use("/user", userByMail);
 
 /*RUTAS POST*/
 // router.post("/theoric/posttheoric", postTheoric);
