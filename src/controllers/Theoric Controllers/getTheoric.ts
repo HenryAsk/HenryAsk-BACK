@@ -1,9 +1,9 @@
 import { Response, Request } from "express";
-const Theoric = require("../../models/Theoric");
+import {TheoricModel, Theoric} from "../../models/Theoric";
 
 /*Este es el controller para borrar contenido teórico.*/
 
-export const getTheoric = async (req: Request, res: Response) => {
+export const GET_THEORIC = async (req: Request, res: Response) => {
   try {
     const { title, author } = req.body;
     let contenido;
@@ -13,14 +13,14 @@ export const getTheoric = async (req: Request, res: Response) => {
           "Por favor, indicar el título o autor del teórico que quiere buscar.",
       });
     } else if (title) {
-      const search = await Theoric.find({ title: title });
+      const search:Array<Theoric> = await TheoricModel.find({ title: title });
       if (search) {
         contenido = search;
       } else {
         contenido = { error: "Este título no existe." };
       }
     } else if (author) {
-      const search = await Theoric.find({ author: author });
+      const search:Array<Theoric> = await TheoricModel.find({ author: author });
       if (typeof search === "object" && search.length === 0) {
         return res.status(404).json({
           error:
@@ -30,7 +30,7 @@ export const getTheoric = async (req: Request, res: Response) => {
         contenido = search;
       }
     } else if (title && author) {
-      const search = await Theoric.find({ title: title, author: author });
+      const search:Array<Theoric> = await TheoricModel.find({ title: title, author: author });
       if (search) {
         contenido = search;
       } else {

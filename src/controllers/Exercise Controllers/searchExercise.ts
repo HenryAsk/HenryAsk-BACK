@@ -27,8 +27,8 @@ export const SEARCH_EXERCISES_BY_ID_OR_WORD =async (req: Request, res: Response 
       }
     } else if(req.query.word){
       const word:string | any = req.query.word;
-      const searchedExerciseByWord: Exercise|any = await ExerciseModel.find({
-        $or:[
+      const searchedExerciseByWord: Array<Exercise>|any = await ExerciseModel.find(/* {
+        $or:[ */
           /* {
             tag:word
           },
@@ -37,7 +37,7 @@ export const SEARCH_EXERCISES_BY_ID_OR_WORD =async (req: Request, res: Response 
             $regex: `/${word}/`,
             $options: "i"
           }}, */
-          {
+          /*  {
             title: {
             $regex: `/${word}/`,
             $options: "i"
@@ -46,12 +46,12 @@ export const SEARCH_EXERCISES_BY_ID_OR_WORD =async (req: Request, res: Response 
             descripcion: {
             $regex: `/${word}/`,
             $options: "i"
-          }},
+          }}, */
           {
             $text: { $search: word} 
           }
-        ]
-      });
+        /* ] */
+      /* } */);
       if(searchedExerciseByWord){
         
         res.status(200).json(searchedExerciseByWord);

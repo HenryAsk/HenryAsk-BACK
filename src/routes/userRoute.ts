@@ -4,5 +4,7 @@ import { Router } from 'express';
 
 const router = Router();
 
-export const allUsers = router.get('/', GET_ALL_USER);
-export const userById = router.get('/:id', GET_USER_BY_ID);
+router.get('/', GET_ALL_USER);
+router.get('/:id', GET_USER_BY_ID);
+
+export = router;
