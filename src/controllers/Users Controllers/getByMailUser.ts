@@ -9,9 +9,9 @@ export const GET_USER_BY_MAIL = async(req: Request, res: Response, next: NextFun
 
         if(email){
             let userByMail = await User.findOne({ email: email });
-            console.log(userByMail)
             if(userByMail){
                 userByMail = {
+                    _id: userByMail._id,
                     first_name: userByMail.first_name,
                     last_name: userByMail.last_name,
                     user_name: userByMail.user_name,
