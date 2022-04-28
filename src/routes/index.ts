@@ -1,5 +1,15 @@
-import { Router } from "express";
+import { Router } from 'express';
+
+// Import routers
+import exerciseRouter from './exerciseRoute';
+// import { allUsers, userById } from './userRoute';
+// import commentRouter from './commentRoute';
+
 const router = Router();
+
+//Config routers : import all routers like below:
+router.use('/exercise', exerciseRouter)
+// router.use('/comments', commentRouter)
 
 /*IMPORT RUTAS THEORIC*/
 // import { postTheoric } from "../controllers/Theoric Controllers/postTheoric";
