@@ -19,16 +19,20 @@ export const GET_USER_BY_ID = async(req: Request, res: Response) => {
                     city: userById.city,
                     profile_picture: userById.profile_picture,
                     biography: userById.biography,
+                    github: userById.github,
+                    linkedin: userById.linkedin,
                     own_henry_coin: userById.own_henry_coin,
                     give_henry_coin: userById.give_henry_coin,
-                    theoric: userById.theoric
+                    comments: userById.comments,
+                    theoric: userById.theoric,
+                    exercise: userById.exercise
                 }
                 res.status(200).json(userById);
             } else {
-                res.status(404).send('No se encontró el usuario requerido.')
+                res.status(404).send('No se encontró el usuario requerido.');
             }
         }
     } catch(err: any | unknown) {
-        res.send(err);
+        res.status(404).send(err);
     }
 };

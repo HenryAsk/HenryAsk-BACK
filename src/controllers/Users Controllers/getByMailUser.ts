@@ -9,6 +9,7 @@ export const GET_USER_BY_MAIL = async(req: Request, res: Response, next: NextFun
 
         if(email){
             let userByMail = await User.findOne({ email: email });
+
             if(userByMail){
                 userByMail = {
                     _id: userByMail._id,
@@ -21,16 +22,20 @@ export const GET_USER_BY_MAIL = async(req: Request, res: Response, next: NextFun
                     city: userByMail.city,
                     profile_picture: userByMail.profile_picture,
                     biography: userByMail.biography,
+                    github: userByMail.github,
+                    linkedin: userByMail.linkedin,
                     own_henry_coin: userByMail.own_henry_coin,
                     give_henry_coin: userByMail.give_henry_coin,
-                    theoric: userByMail.theoric
+                    comments: userByMail.comments,
+                    theoric: userByMail.theoric,
+                    exercise: userByMail.exercise
                 }
                 res.status(200).json(userByMail);
             } else {
-                res.status(404).send('No se encontró el usuario requerido.')
+                res.status(404).send('No se encontró el usuario requerido.');
             }
         }
     } catch(err: any | unknown) {
-        res.send(err);
+        res.status(404).send(err);
     }
 };

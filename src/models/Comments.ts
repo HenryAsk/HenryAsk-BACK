@@ -6,7 +6,7 @@ export class Comments{
   @prop({ type: String, required: true })
   content: string;
   
-  @prop({ ref: () => User, required: true }) //el id del user creador
+  @prop({ Ref: () => User, required: true }) //el id del user creador
   owner: Array<Ref<User>>;
 
   // @prop({ ref: () => Comment, required: false })
