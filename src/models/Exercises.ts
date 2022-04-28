@@ -1,20 +1,31 @@
 import { getModelForClass, prop, Ref } from "@typegoose/typegoose";
-import { Comments } from "./Comments";
-import { User } from "./User";
+//import { User } from "./User";
+
+//import { Resolution } from "../../Models/Post"; 
+//importar Tags enum de modelo Post 
 
 export class Exercise{
-  @prop({ type: () => String, required: true, trim: true })
+  //@prop({ ref: () => User, required: true }) //el id del user creador
+  //owner: Ref<User>;
+
+  @prop({ type: () => String, required: true})
   title: string;
 
-  @prop({ type: String, required: true })
-  content: string;
-  
-  @prop({ ref: () => User, required: true }) //el id del user creador
-  owner: Ref<User>;
+  // @prop({enum: Tags, required:true})
+  // tags: Tags;
 
-  @prop({ ref: () => Comments, required: false })
-  comments?: Array<Ref<Comments>>;
+  @prop({ type: String, required: true })
+  description: string;
+
+  @prop({ type: String, required: false })
+  code?: string;
+
+  @prop({ type: String, required: false })
+  test?: string;
+  
+  // @prop({ ref: () => Resolution, required: false })
+  // resolution?: Array<Ref<Resolution>>;
 }
 
-const ExcerciseModel = getModelForClass(Exercise);
-module.exports = ExcerciseModel;
+export const ExerciseModel = getModelForClass(Exercise);
+//module.exports = ExcerciseModel;
