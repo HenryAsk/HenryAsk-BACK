@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { ExerciseModel } from '../../models/Exercises';
-import { Exercise } from '../../models/Exercises';
+import { ExerciseModel, Exercise } from '../../models/Exercises';
 
 
 export const GET_ALL_EXERCISES = async (req: Request, res: Response, next: NextFunction) => {
@@ -9,7 +8,7 @@ export const GET_ALL_EXERCISES = async (req: Request, res: Response, next: NextF
   else {
     try {
 
-      const allExercises = await ExerciseModel.find({});
+      const allExercises:Array<Exercise> = await ExerciseModel.find({});
 
       if (allExercises) {
         //use the map below to set the properties to send to the front

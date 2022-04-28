@@ -1,6 +1,6 @@
 import { getModelForClass, prop, Ref } from "@typegoose/typegoose";
 //import { Responses } from './Comments';
-import { User } from './User';
+import { User } from './Users';
 
 export class Comments{
   @prop({ type: String, required: true })
