@@ -3,7 +3,7 @@ const Theoric = require("../../models/Theoric");
 
 /*Este es el controller para borrar contenido teórico.*/
 
-export const deleteTheoric = async (req: Request, res: Response) => {
+export const DELETE_THEORIC = async (req: Request, res: Response) => {
   try {
     const { id } = req.body;
     if (id) {

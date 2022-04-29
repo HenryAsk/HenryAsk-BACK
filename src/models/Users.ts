@@ -1,4 +1,6 @@
 import { prop, getModelForClass, Ref } from '@typegoose/typegoose';
+import { Comments } from './Comments';
+import { Exercise } from './Exercises';
 import { Theoric } from './Theoric';
 
 
@@ -40,27 +42,33 @@ export class User{
     @prop({ required: true, minlength: 6, lowercase: true })
     password: string;
 
+    @prop({ type: () => String})
+    github: string
+
+    @prop({ type: () => String })
+    linkedin: string
+    
+    @prop({ type: () => Number, default: 0 })
+    own_henry_coin: number
+    
+    @prop({ type: () => Number, default: 0 })
+    give_henry_coin: number
+
     // @prop()
     // posts: Ref<Posts>
 
     // @prop()
     // answers: Ref<Answers>
 
-    // @prop()
-    // comments: Ref<Comments> 
-
-    @prop({ type: () => Number, default: 0 })
-    own_henry_coin: number
-
-    @prop({ type: () => Number, default: 0 })
-    give_henry_coin: number
+    @prop({ Ref: () => Comments, default: [] })
+    comments?: Ref<Comments> 
 
     @prop({ Ref: () => Theoric, default: [] })
     theoric?: Ref<Theoric>[]
 
-    // @prop()
-    // exercise?: Ref<Exercise>[]
+    @prop({ Ref: () => Exercise, default: [] })
+    exercise?: Ref<Exercise>[]
 }
 
-const UserModel = getModelForClass(User);
+export const UserModel = getModelForClass(User);
 module.exports = UserModel;

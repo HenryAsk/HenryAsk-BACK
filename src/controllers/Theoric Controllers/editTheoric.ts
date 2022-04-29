@@ -4,7 +4,7 @@ const Theoric = require("../../models/Theoric");
 /*Este controlador sirve para editar el contenido teórico. Primero se busca el contenido que se quiere editar. Luego se edita
 sólo las propiedades que se soliciten. Finalmente se guarda en la base de datos. */
 
-export const editTheoric = async (req: Request, res: Response) => {
+export const EDIT_THEORIC = async (req: Request, res: Response) => {
   try {
     const { id, title, content, author, images, comments } = req.body;
     if (!id) {

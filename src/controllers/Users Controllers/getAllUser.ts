@@ -11,6 +11,7 @@ export const GET_ALL_USER = async (req: Request, res: Response) => {
                 return({
                     first_name: el.first_name,
                     last_name: el.last_name,
+                    user_name: el.user_name,
                     email: el.email,
                     role: el.role,
                     country: el.country,

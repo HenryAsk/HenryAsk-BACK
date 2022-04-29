@@ -18,5 +18,5 @@ export class Theoric {
   comments?: Array<string>;
 }
 
-const TheoricModel = getModelForClass(Theoric);
-module.exports = TheoricModel;
+export const TheoricModel = getModelForClass(Theoric);
+

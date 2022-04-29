@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Router } from "express";
 const router = Router();
 
@@ -18,21 +19,22 @@ router.use('/post', editRoute);
 // import { deleteTheoric } from "../controllers/Theoric Controllers/deleteTheoric";
 
 import { allUsers, userById } from './userRoute';
+=======
+import { Router } from 'express';
+>>>>>>> 1150dcf2ec20759b8a625c0fc66691cf48b3df6a
 
-/*RUTAS GET*/
-router.use("/user", allUsers);
-router.use("/user", userById);
+// Import routers
+// import commentRouter from './commentRoute';
+import exerciseRouter from './exerciseRoute';
+import theoricRouter from './theoricRoute';
+import userRouter from './userRoute';
 
-/*RUTAS POST*/
-// router.post("/theoric/posttheoric", postTheoric);
+const router = Router();
 
-/*RUTAS PUT*/
-// router.put("/theoric/edittheoric", editTheoric);
-
-/*RUTAS DELETE*/
-// router.delete("/theoric/deletetheoric", deleteTheoric);
-
-/*RUTAS GET*/
-// router.get("/theoric/gettheoric", getTheoric);
+//Config routers : import all routers like below:
+// router.use('/comments', commentRouter);
+router.use('/exercise', exerciseRouter);
+router.use('/theoric', theoricRouter);
+router.use("/user", userRouter);
 
 module.exports = router;
