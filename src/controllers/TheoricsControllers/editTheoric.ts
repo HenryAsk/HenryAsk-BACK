@@ -4,11 +4,11 @@ const Theoric = require("../../models/Theoric");
 /*Este controlador sirve para editar el contenido teórico. Primero se busca el contenido que se quiere editar. Luego se edita
 sólo las propiedades que se soliciten. Finalmente se guarda en la base de datos. */
 
-export const editTheoric = async (req: Request, res: Response) => {
-  try {
+export const EDIT_THEORIC = async (req: Request, res: Response) => {
+  try{
     const { id, title, content, author, images, comments } = req.body;
-    if (!id) {
-      return res.status(404).json({
+    if(!id){
+      res.status(404).json({
         error: "Por favor, indique el contenido que quiere modificar",
       });
     }
@@ -29,19 +29,23 @@ export const editTheoric = async (req: Request, res: Response) => {
       comments: oldData.comments || null,
     };
 
-    if (title) {
+    if(title){
       newData.title = title;
-    } else if (content) {
+
+    } else if(content){
       newData.content = content;
-    } else if (author) {
+
+    } else if(author){
       newData.author = author;
-    } else if (images) {
+
+    } else if(images){
       newData.images = images;
-    } else if (comments) {
+      
+    } else if(comments){
       newData.comments = comments;
     }
     await Theoric.create(newData);
-    return res.json("Materia editado exitosamente. " + oldData);
+    res.json("Materia editado exitosamente. " + oldData);
   } catch (err) {
     console.log("Algo salió mal en el controller editTheoric: ", err);
   }

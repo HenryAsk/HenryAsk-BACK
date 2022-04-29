@@ -1,21 +1,24 @@
-const router = require("express").Router();
+import { Router } from "express";
+const router = Router();
 
-/*IMPORT RUTAS THEORIC*/
-import { postTheoric } from "../controllers/Theoric Controllers/postTheoric";
-import { editTheoric } from "../controllers/Theoric Controllers/editTheoric";
-import { deleteTheoric } from "../controllers/Theoric Controllers/deleteTheoric";
-import { getTheoric } from "../controllers/Theoric Controllers/getTheoric";
+// Import routers below:
+import exerciseRouter from './exerciseRoute';
+import theoricRouter from './theoricRoute';
+import commentRouter from './commentRoute';
+import answerRouter from './answerRoute';
+import postRouter from './postRoutes';
+import userRouter from './userRoute';
 
-/*RUTAS POST*/
-router.post("/theoric/posttheoric", postTheoric);
+//Config routers below:
+router.use('/exercise', exerciseRouter);
+router.use('/comments', commentRouter);
+router.use('/theoric', theoricRouter);
+router.use('/answer', answerRouter);
+router.use('/post', postRouter);
+router.use('/user', userRouter);
 
-/*RUTAS PUT*/
-router.put("/theoric/edittheoric", editTheoric);
+export = router;
 
-/*RUTAS DELETE*/
-router.delete("/theoric/deletetheoric", deleteTheoric);
 
-/*RUTAS GET*/
-router.get("/theoric/gettheoric", getTheoric);
 
-module.exports = router;
+

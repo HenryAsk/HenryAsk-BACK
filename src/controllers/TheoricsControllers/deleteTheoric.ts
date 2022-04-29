@@ -3,18 +3,18 @@ const Theoric = require("../../models/Theoric");
 
 /*Este es el controller para borrar contenido teórico.*/
 
-export const deleteTheoric = async (req: Request, res: Response) => {
-  try {
+export const DELETE_THEORIC = async (req: Request, res: Response) => {
+  try{
     const { id } = req.body;
-    if (id) {
+    if(id){
       await Theoric.deleteOne({ _id: id });
-      return res.json("Se ha eliminado este contenido teórico con id: " + id);
+      res.json("Se ha eliminado este contenido teórico con id: " + id);
     } else {
-      return res
+      res
         .status(404)
         .json({ error: "Por favor, indique el contenido que quiere eliminar" });
     }
-  } catch (err) {
+  } catch(err){
     console.log("Algo salió mal en el controller deleteTheoric: ", err);
   }
 };
