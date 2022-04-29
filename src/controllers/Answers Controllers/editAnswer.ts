@@ -7,7 +7,7 @@ export const EDIT_ANSWER = async (req: Request, res: Response) => {
 
         const editAnswer = await AnswerModel.updateOne({ _id: id }, {
             content: content && content
-        })
+        });
 
         res.status(200).json(editAnswer);
 

@@ -1,7 +1,7 @@
-import { DELETE_ANSWER } from "../controllers/AnswersControllers/deleteAnswer";
-import { POST_ANSWER } from "../controllers/AnswersControllers/postAnswer";
-import { EDIT_ANSWER } from "../controllers/AnswersControllers/editAnswer";
-import { GET_ANSWER } from "../controllers/AnswersControllers/getAnswer";
+import { DELETE_ANSWER } from "../controllers/Answers Controllers/deleteAnswer";
+import { POST_ANSWER } from "../controllers/Answers Controllers/postAnswer";
+import { EDIT_ANSWER } from "../controllers/Answers Controllers/editAnswer";
+import { GET_ANSWER } from "../controllers/Answers Controllers/getAnswer";
 import { Router } from "express";
 
 const router = Router();

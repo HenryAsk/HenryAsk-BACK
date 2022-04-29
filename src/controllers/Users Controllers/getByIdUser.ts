@@ -35,6 +35,6 @@ export const GET_USER_BY_ID = async(req: Request, res: Response) => {
             }
         }
     } catch(err: any | unknown) {
-        res.status(404).send(err);
+        res.status(404).send(err.message);
     }
 };

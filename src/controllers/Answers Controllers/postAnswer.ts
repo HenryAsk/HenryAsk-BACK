@@ -3,7 +3,7 @@ const { AnswerModel } = require('../../models/Answers');
 
 export const POST_ANSWER = async (req: Request, res: Response) => {
     try{
-        const {owner, content, posts} = req.body;
+        const { owner, content, posts } = req.body;
 
         if(!owner || !content || !posts){
             throw new Error('Las propiedades owner, content and posts deben ser completadas.');

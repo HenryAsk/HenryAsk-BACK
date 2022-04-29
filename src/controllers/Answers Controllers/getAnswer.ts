@@ -17,7 +17,7 @@ export const GET_ANSWER = async (req: Request, res: Response) => {
                 res.status(200).json(getAnswer);
             }
             else{
-                res.status(404).send('No se encontraron respuestas a este post.')
+                res.status(404).send('No se encontraron respuestas a este post.');
             }
         }
     } catch(err: any | unknown) {

@@ -38,6 +38,6 @@ export const GET_USER_BY_MAIL = async(req: Request, res: Response, next: NextFun
             }
         }
     } catch(err: any | unknown) {
-        res.status(404).send(err);
+        res.status(404).send(err.message);
     }
 };
