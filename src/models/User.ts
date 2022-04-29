@@ -1,44 +1,44 @@
-const { prop, getModelForClass } = require('@typegoose/typegoose');
+const { prop, getModelForClass } = require("@typegoose/typegoose");
 
-enum Gender{
-    MALE = 'Male',
-    FEMALE = 'Female',
-    OTHER = 'Other'
+enum Gender {
+  MALE = "Male",
+  FEMALE = "Female",
+  OTHER = "Other",
 }
 
-export class User{
-    @prop({ required: true, trim: true })
-    first_name: string;
+export class User {
+  @prop({ required: true, trim: true, default: "" })
+  first_name: string;
 
-    @prop({ required: true, trim: true })
-    last_name: string;
+  @prop({ required: true, trim: true, default: "" })
+  last_name: string;
 
-    @prop({ required: true, unique: true, trim: true, lowercase: true })
-    email: string;
+  @prop({ required: true, unique: true, trim: true, lowercase: true })
+  email: string;
 
-    @prop({ enum: Gender, addNullToEnum: true })
-    gender?: Gender;
+  @prop({ enum: Gender, addNullToEnum: true })
+  gender?: Gender;
 
-    @prop({ type: () => String })
-    country?: string;
+  @prop({ type: () => String })
+  country?: string;
 
-    @prop({ type: () => String })
-    city?: string;
+  @prop({ type: () => String })
+  city?: string;
 
-    @prop({ required: true })
-    is_student: boolean;
+  @prop({ required: true })
+  is_student: boolean;
 
-    @prop({ required: true, unique: true })
-    user_name: string;
+  @prop({ required: true })
+  user_name: string;
 
-    @prop({ lowercase: true })
-    profile_picture?: string;
+  @prop({ lowercase: true })
+  profile_picture?: string;
 
-    @prop({ maxlength: 300 })
-    biography?: string;
+  @prop({ maxlength: 300 })
+  biography?: string;
 
-    @prop({ required: true, minlength: 6, lowercase: true })
-    password: string;
+  @prop({ required: true, minlength: 6, lowercase: true })
+  password: string;
 }
 
 const UserModel = getModelForClass(User);
