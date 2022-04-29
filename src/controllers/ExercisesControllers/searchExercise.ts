@@ -2,12 +2,11 @@ import { Request, Response } from "express";
 import { ExerciseModel, Exercise } from "../../models/Exercises";
 
 export const SEARCH_EXERCISES_BY_ID_OR_WORD =async (req: Request, res: Response ) => {
-
   try {
-    if (req.query.id) {
+    if(req.query.id){
       const id = req.query.id;
       //switch to zero the properties below that don't need send to front-end
-      const searchedExerciseById:Exercise|null = await ExerciseModel.findById(id,{
+      const searchedExerciseById: Exercise | null = await ExerciseModel.findById(id, {
         _id:1,
         //owner:1,
         title:1,
@@ -18,16 +17,14 @@ export const SEARCH_EXERCISES_BY_ID_OR_WORD =async (req: Request, res: Response 
         //resolution:1,
       });
       if(searchedExerciseById){
-
         res.status(200).json(searchedExerciseById);
 
-      } else{
-
+      } else {
         throw new Error("The id entered hasn't been matched with no one exercise, please check this with our admins");
       }
     } else if(req.query.word){
-      const word:string | any = req.query.word;
-      const searchedExerciseByWord: Array<Exercise>|any = await ExerciseModel.find(/* {
+      const word: string | any = req.query.word;
+      const searchedExerciseByWord: Array<Exercise> | any = await ExerciseModel.find(/* {
         $or:[ */
           /* {
             tag:word
@@ -53,16 +50,13 @@ export const SEARCH_EXERCISES_BY_ID_OR_WORD =async (req: Request, res: Response 
         /* ] */
       /* } */);
       if(searchedExerciseByWord){
-        
         res.status(200).json(searchedExerciseByWord);
-      }else{
-        
+
+      } else {
         throw new Error("The parameter entered hasn't been matched with no one exercise, try with others");
-        
       } 
     }
-  } catch (e: string | any) {
-    res.status(400).json(`An error has been ocurred in the controller SEARCH_EXERCISES_BY_ID_OR_WORD: ${e.message}`)
+  } catch(err: string | any){
+    res.status(400).json(`An error has been ocurred in the controller SEARCH_EXERCISES_BY_ID_OR_WORD: ${err.message}`);
   }
-  
-}
+};

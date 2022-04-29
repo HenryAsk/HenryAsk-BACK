@@ -35,10 +35,7 @@ export const EDIT_USER = async (req: Request, res: Response) => {
             });
             res.status(200).json(`${userEdited.matchedCount} document has been matched and ${userEdited.modifiedCount} document has been modified `);
         }
-
-
     } catch(err: any | unknown) {
-
         res.status(404).send(err);
     }
 };

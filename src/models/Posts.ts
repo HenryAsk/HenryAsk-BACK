@@ -15,7 +15,7 @@ export enum Tags {
     HTML = 'HTML',
     SQL = 'SQL',
     Modulo = 'Modulo',
-    Otros = 'Otros',
+    Otros = 'Otros'
 }
 export enum Type {
     Prep,

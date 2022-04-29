@@ -14,7 +14,7 @@ export const GET_POST =async (req: Request, res: Response) => {
         }else if (description){
             const searchPost = await PostModel.find( { description: { $regex: `${description}`} } );
             if(searchPost.length > 0){
-                res.json(searchPost)
+                res.json(searchPost);
             }else{
                 res.status(404).json({error: 'no se encontro consulta disponible'});
             }            
@@ -28,14 +28,12 @@ export const GET_POST =async (req: Request, res: Response) => {
         }else if (tags){
             const searchPost = await PostModel.find( { tags: { $regex: `${tags}`} } );
             if(searchPost.length > 0){
-                res.json(searchPost)
+                res.json(searchPost);
             }else{
                 res.status(404).json({error: 'no se encontro consulta disponible'});
             } 
         }
-        
-    } catch (error) {
-        console.log(error);
-        
+    } catch(err: any | unknown){
+        res.status(404).send(err.message);
     }
-}
+};
