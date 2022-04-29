@@ -10,6 +10,7 @@ export const GET_USER_BY_ID = async(req: Request, res: Response) => {
             
             if(userById){
                 userById = {
+                    _id: userById.id,
                     first_name: userById.first_name,
                     last_name: userById.last_name,
                     user_name: userById.user_name,

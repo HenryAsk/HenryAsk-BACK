@@ -5,7 +5,7 @@ export const GET_ANSWER = async (req: Request, res: Response) => {
     try{
         const { owner, content, posts } = req.body;
 
-        if(!owner || !content || !posts ){
+        if(!owner || !content || !posts){
             res.status(404).send('Respuesta no encontrada.')
         }
         else {
@@ -20,7 +20,7 @@ export const GET_ANSWER = async (req: Request, res: Response) => {
                 res.status(404).send('No se encontraron respuestas a este post.');
             }
         }
-    } catch(err: any | unknown) {
+    } catch(err: any | unknown){
         res.status(404).send(err.message);
     }
 };

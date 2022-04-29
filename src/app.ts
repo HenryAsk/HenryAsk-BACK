@@ -25,7 +25,7 @@ server.use(express.json());
 
 server.use('/', routes);
 server.listen(server.get('port'), () => {
-    console.log('Enhorabuenaaaa');
+    console.log('Qué onda pa? Ya me levanté');
 })
 
 module.exports = server;
