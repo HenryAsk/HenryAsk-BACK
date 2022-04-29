@@ -1,7 +1,8 @@
-import { getModelForClass, prop, Ref } from '@typegoose/typegoose';
+import { getModelForClass, prop, Ref, modelOptions } from '@typegoose/typegoose';
 import { Posts } from './Posts';
 import { User } from './Users';
 
+@modelOptions({ options: { allowMixed: 0 } })
 export class Answer {
     @prop({ Ref: () => User })
     owner: Ref<User>
@@ -14,4 +15,3 @@ export class Answer {
 };
 
 export const AnswerModel = getModelForClass(Answer);
-// module.exports = AnswerModel;

@@ -1,9 +1,10 @@
-import { prop, getModelForClass, Ref } from '@typegoose/typegoose';
+import { prop, getModelForClass, Ref, modelOptions } from '@typegoose/typegoose';
 import { Comments } from './Comments';
 import { Exercise } from './Exercises';
 import { Theoric } from './Theoric';
 import { Answer } from './Answers';
 import { Posts } from './Posts';
+
 
 enum Roles{
     ZERO,
@@ -12,6 +13,7 @@ enum Roles{
     THREE
 }
 
+@modelOptions({ options: { allowMixed: 0 } })
 export class User{
     @prop({ required: false, trim: true, default: "" })
     first_name: string;
@@ -72,4 +74,3 @@ export class User{
 }
 
 export const UserModel = getModelForClass(User);
-// module.exports = UserModel;
