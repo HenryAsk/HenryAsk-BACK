@@ -6,7 +6,7 @@ export const GET_POST =async (req: Request, res: Response) => {
         const { description, question, tags, id} = req.query;
             
         if(id){
-            const searchPost = await PostModel.find({_id:id});
+            const searchPost = await PostModel.findOne({_id:id});
             console.log("searchPost:", searchPost)
             res.status(200).json(searchPost);
         }else if(!description && !question && ! tags) {
