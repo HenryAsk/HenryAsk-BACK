@@ -1,8 +1,8 @@
+import { DELETE_THEORIC } from "../controllers/TheoricsControllers/deleteTheoric";
+import { EDIT_THEORIC } from "../controllers/TheoricsControllers/editTheoric";
+import { POST_THEORIC } from "../controllers/TheoricsControllers/postTheoric";
+import { GET_THEORIC } from "../controllers/TheoricsControllers/getTheoric";
 import { Router } from "express";
-import { GET_THEORIC } from "../controllers/Theoric Controllers/getTheoric";
-import { POST_THEORIC } from "../controllers/Theoric Controllers/postTheoric";
-import { EDIT_THEORIC } from "../controllers/Theoric Controllers/editTheoric";
-import { DELETE_THEORIC } from "../controllers/Theoric Controllers/deleteTheoric";
 
 const router = Router();
 router.get('/', GET_THEORIC);

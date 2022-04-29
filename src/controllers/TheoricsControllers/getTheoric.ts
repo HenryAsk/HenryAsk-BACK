@@ -1,5 +1,5 @@
 import { Response, Request } from "express";
-import {TheoricModel, Theoric} from "../../models/Theoric";
+import {TheoricModel, Theoric} from "../../models/Theorics";
 
 /*Este es el controller para borrar contenido teórico.*/
 

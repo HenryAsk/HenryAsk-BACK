@@ -21,9 +21,9 @@ export  const POST_POST = async (req: Request ,res: Response) => {
                 }
         }
         if( question && description && tags ){
-            createPost = {user_name, open, date, response};
-            await Posts.create(createPost);
-            return res.json('Post creado exitosamente');
+            createPost = { open, date, response, question, tags, description};
+            const postCreated = await Posts.create(createPost);
+            return res.json(postCreated);
         }
         
     } catch (error) {

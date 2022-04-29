@@ -1,7 +1,7 @@
-import { prop, getModelForClass, Ref } from '@typegoose/typegoose';
+import { prop, getModelForClass, Ref, modelOptions } from '@typegoose/typegoose';
 import { Comments } from './Comments';
 import { Exercise } from './Exercises';
-import { Theoric } from './Theoric';
+import { Theoric } from './Theorics';
 
 
 enum Roles{
@@ -10,7 +10,7 @@ enum Roles{
     TWO,
     THREE
 }
-
+@modelOptions({options:{allowMixed:0}})
 export class User{
     @prop({ required: false, trim: true, default: "" })
     first_name: string;
@@ -22,7 +22,7 @@ export class User{
     email: string;
 
     @prop({ enum: Roles, addNullToEnum: false, default: 0 })
-    role: Roles
+    role: Roles;
 
     @prop({ type: () => String, default: "" })
     country?: string;
