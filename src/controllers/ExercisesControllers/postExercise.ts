@@ -3,9 +3,9 @@ import { ExerciseModel } from '../../models/Exercises';
 
 export const CREATE_EXERCISE = async (req: Request, res: Response ) => {
   try{
-    const { /* owner,  */title, /* tags, */ description, code, test } = req.body;
+    const { owner,  title, tags, description, code, test } = req.body;
     
-    if(/* owner && */ title /* && tags */ && description){
+    if( owner &&  title  && tags && description){
       const exerciseRepeatedOrNot = await ExerciseModel.findOne({ title: title });
       
       if(exerciseRepeatedOrNot){
@@ -13,9 +13,9 @@ export const CREATE_EXERCISE = async (req: Request, res: Response ) => {
 
       } else {
         const exerciseCreated = await ExerciseModel.create({
-        //owner,
+        owner,
         title, 
-        //tags, 
+        tags, 
         description, 
         code, 
         test

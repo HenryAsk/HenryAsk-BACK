@@ -1,5 +1,5 @@
 import { Response, Request } from "express";
-const Theoric = require("../../models/Theoric");
+import {Theoric, TheoricModel} from "../../models/Theorics";
 
 /*Este es el controller para postear un contenido teórico. Primero se revisa qué variables se traen del FRONT, 
 y luego se crea la instancia en la base de datos.*/
@@ -16,7 +16,7 @@ export const POST_THEORIC = async (req: Request, res: Response) => {
       });
     }
     if(title){
-      const alreadyExists = await Theoric.findOne({ title: title });
+      const alreadyExists:Theoric = await TheoricModel.findOne({ title: title });
       
       if(alreadyExists){
         res.status(404).json({
@@ -26,24 +26,24 @@ export const POST_THEORIC = async (req: Request, res: Response) => {
     }
     if(images && comments){
       instancia = { title, content, author, images, comments };
-      await Theoric.create(instancia);
+      await TheoricModel.create(instancia);
       res.json("Material guardado exitosamente.");
     }
     if(images && !comments){
       instancia = { title, content, author, images };
-      await Theoric.create(instancia);
+      await TheoricModel.create(instancia);
       res.json("Material guardado exitosamente.");
     }
     if(!images && comments){
       instancia = { title, content, author, comments };
-      await Theoric.create(instancia);
+      await TheoricModel.create(instancia);
       res.json("Material guardado exitosamente.");
     } else {
       instancia = { title, content, author };
-      await Theoric.create(instancia);
+      await TheoricModel.create(instancia);
       res.json("Material guardado exitosamente.");
     }
-  } catch(err){
-    console.log("Algo salió mal en el controller postTheoric: ", err);
+  } catch(err: string | any){
+    res.status(400).json(`Algo salió mal en el controller postTheoric: ${err.message}`);
   }
 };

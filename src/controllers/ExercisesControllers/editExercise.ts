@@ -20,8 +20,8 @@ export const EDIT_EXERCISE =async (req:Request, res:Response) => {
       res.status(400).json("Must be enter an id.")
     }
       
-  } catch (e: string | any) {
+  } catch (err: string | any) {
 
-    res.status(400).json(`An error has been ocurred in controller EDIT_EXERCISE: ${e.message}`)
+    res.status(400).json(`An error has been ocurred in controller EDIT_EXERCISE: ${err.message}`)
   }
 }

@@ -26,7 +26,7 @@ export const EDIT_POST = async (req: Request, res: Response) => {
         await Posts.create(oldPost);
         res.json('Los cambios fueron realizados correctamente');     
 
-    } catch(err: any | unknown){
+    } catch(err: string | any){
         res.status(404).send(err.message);
     }
 };

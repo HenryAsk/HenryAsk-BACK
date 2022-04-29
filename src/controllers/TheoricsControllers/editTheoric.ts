@@ -1,5 +1,5 @@
 import { Response, Request } from "express";
-const Theoric = require("../../models/Theoric");
+import {Theoric, TheoricModel } from "../../models/Theorics";
 
 /*Este controlador sirve para editar el contenido teórico. Primero se busca el contenido que se quiere editar. Luego se edita
 sólo las propiedades que se soliciten. Finalmente se guarda en la base de datos. */
@@ -12,8 +12,8 @@ export const EDIT_THEORIC = async (req: Request, res: Response) => {
         error: "Por favor, indique el contenido que quiere modificar",
       });
     }
-    const oldData = await Theoric.findOne({ _id: id });
-    await Theoric.deleteOne({ _id: id });
+    const oldData: Theoric = await TheoricModel.findOne({ _id: id });
+    await TheoricModel.deleteOne({ _id: id });
     interface NewData {
       title: string;
       content: string;
@@ -25,8 +25,8 @@ export const EDIT_THEORIC = async (req: Request, res: Response) => {
       title: oldData.title,
       content: oldData.content,
       author: oldData.author,
-      images: oldData.images || null,
-      comments: oldData.comments || null,
+      images: oldData.images || undefined,
+      comments: oldData.comments || undefined,
     };
 
     if(title){
@@ -44,9 +44,9 @@ export const EDIT_THEORIC = async (req: Request, res: Response) => {
     } else if(comments){
       newData.comments = comments;
     }
-    await Theoric.create(newData);
+    await TheoricModel.create(newData);
     res.json("Materia editado exitosamente. " + oldData);
-  } catch (err) {
-    console.log("Algo salió mal en el controller editTheoric: ", err);
+  } catch (err: string | any) {
+    console.log("Algo salió mal en el controller editTheoric: ", err.message);
   }
 };

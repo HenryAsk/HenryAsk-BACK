@@ -7,6 +7,7 @@ export const GET_POST =async (req: Request, res: Response) => {
             
         if(id){
             const searchPost = await PostModel.find({_id:id});
+            console.log("searchPost:", searchPost)
             res.status(200).json(searchPost);
         }else if(!description && !question && ! tags) {
             const searchPost = await PostModel.find({});
@@ -33,7 +34,7 @@ export const GET_POST =async (req: Request, res: Response) => {
                 res.status(404).json({error: 'no se encontro consulta disponible'});
             } 
         }
-    } catch(err: any | unknown){
+    } catch(err: string | any){
         res.status(404).send(err.message);
     }
 };

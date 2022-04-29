@@ -3,7 +3,7 @@ import { ExerciseModel, Exercise } from '../../models/Exercises';
 
 export const GET_ALL_EXERCISES = async (req: Request, res: Response, next: NextFunction) => {
 
-  if(req.query.id) next();
+  if(req.query.id || req.query.word) next();
 
   else{
     try{
@@ -14,9 +14,9 @@ export const GET_ALL_EXERCISES = async (req: Request, res: Response, next: NextF
         //use the map below to set the properties to send to the front
         const allExercisesMapped = allExercises.map((el: Exercise) => {
           return {
-            //owner: el.owner,
+            owner: el.owner,
             title: el.title,
-            //tags: el.tags,
+            tags: el.tags,
             description: el.description,
             code: el.code,
             test: el.test,

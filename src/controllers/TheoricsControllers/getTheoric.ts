@@ -5,7 +5,7 @@ import {TheoricModel, Theoric} from "../../models/Theorics";
 
 export const GET_THEORIC = async (req: Request, res: Response) => {
   try{
-    const { title, author } = req.body;
+    const { title, author } = req.query;
     let contenido;
 
     if(!title && !author){
@@ -42,7 +42,7 @@ export const GET_THEORIC = async (req: Request, res: Response) => {
       }
     }
     res.json(contenido);
-  } catch(err){
-    console.log("Algo salió mal en el controller getTheoric: ", err);
+  } catch(err: string | any){
+    console.log("Algo salió mal en el controller getTheoric: ", err.message);
   }
 };

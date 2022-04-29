@@ -11,7 +11,7 @@ export const DELETE_POST =async (req: Request, res: Response)  => {
         }else{
             res.status(404).json({error: 'no se pudo eliminar el post'});
         }
-    } catch(err: any | unknown){
+    } catch(err: string | any){
         res.status(404).send(err.message);
     }
 };
