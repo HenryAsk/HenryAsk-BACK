@@ -39,14 +39,14 @@ export const SEARCH_EXERCISES_BY_ID_OR_WORD =async (req: Request, res: Response 
             $regex: `/${word}/`,
             $options: "i"
           }},
-          {
-            descripcion: {
-            $regex: `/${word}/`,
-            $options: "i"
-          }}, */
-          {
-            $text: { $search: word } 
-          }
+          */{
+            description: {
+            $regex: `${word}`,
+            /* $options: "i" */
+          }}, 
+          /* {
+            $text: { $search: word} 
+          } */
         /* ] */
       /* } */);
       if(searchedExerciseByWord){

@@ -20,7 +20,9 @@
   },
   "homepage": "https://github.com/HenryAsk/HenryAsk-BACK#readme",
   "devDependencies": {
+    "@types/cookie-parser": "^1.4.3",
     "@types/express": "^4.17.13",
+    "@types/morgan": "^1.9.3",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.15",
     "ts-node-dev": "^1.1.8",

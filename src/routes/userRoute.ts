@@ -1,8 +1,8 @@
-import { GET_USER_BY_MAIL } from '../controllers/Users Controllers/getByMailUser';
-import { GET_USER_BY_ID } from '../controllers/Users Controllers/getByIdUser';
-import { GET_ALL_USER } from '../controllers/Users Controllers/getAllUser';
-import { DELETE_USER } from '../controllers/Users Controllers/deleteUser';
-import { EDIT_USER } from '../controllers/Users Controllers/editUser';
+import { GET_USER_BY_MAIL } from '../controllers/UsersControllers/getByMailUser';
+import { GET_USER_BY_ID } from '../controllers/UsersControllers/getByIdUser';
+import { GET_ALL_USER } from '../controllers/UsersControllers/getAllUser';
+import { DELETE_USER } from '../controllers/UsersControllers/deleteUser';
+import { EDIT_USER } from '../controllers/UsersControllers/editUser';
 import { Router } from 'express';
 
 const router = Router();

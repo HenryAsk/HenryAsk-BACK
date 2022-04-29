@@ -1,12 +1,14 @@
-import {GET_POST} from '../controllers/PostsController/getPost';
-import {POST_POST} from '../controllers/PostsController/postPost';
 import {DELETE_POST} from '../controllers/PostsController/deletePost';
+import {POST_POST} from '../controllers/PostsController/postPost';
 import {EDIT_POST} from '../controllers/PostsController/editPost';
+import {GET_POST} from '../controllers/PostsController/getPost';
 import { Router } from 'express';
 
 const router = Router();
 
-export const userPost = router.get('/get', GET_POST);
-export const postPost = router.post('/post', POST_POST);
-export const deletePost = router.delete('/del', DELETE_POST);
-export const editRoute = router.put('/edit', EDIT_POST);
+router.get('/', GET_POST);
+router.put('/', EDIT_POST);
+router.post('/', POST_POST);
+router.delete('/', DELETE_POST);
+
+export = router;

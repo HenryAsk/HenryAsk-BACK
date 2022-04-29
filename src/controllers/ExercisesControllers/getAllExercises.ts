@@ -16,7 +16,7 @@ export const GET_ALL_EXERCISES = async (req: Request, res: Response, next: NextF
           return {
             //owner: el.owner,
             title: el.title,
-            //tags: el.tags
+            //tags: el.tags,
             description: el.description,
             code: el.code,
             test: el.test,

@@ -1,7 +1,8 @@
-import { getModelForClass, prop, Ref } from "@typegoose/typegoose";
+import { getModelForClass, modelOptions, prop, Ref } from "@typegoose/typegoose";
 //import { Responses } from './Comments';
 import { User } from './Users';
 
+@modelOptions({options:{allowMixed:0}})
 export class Comments{
   @prop({ type: String, required: true })
   content: string;
