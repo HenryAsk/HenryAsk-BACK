@@ -1,6 +1,17 @@
 import { Router } from "express";
 const router = Router();
 
+//import rutas POST
+
+import {userPost, postPost, deletePost, editRoute} from './postRoutes';
+
+//Rutas del Post
+
+router.use('/post', userPost);
+router.use('/post', postPost);
+router.use('/post', deletePost);
+router.use('/post', editRoute);
+
 /*IMPORT RUTAS THEORIC*/
 // import { postTheoric } from "../controllers/Theoric Controllers/postTheoric";
 // import { editTheoric } from "../controllers/Theoric Controllers/editTheoric";
