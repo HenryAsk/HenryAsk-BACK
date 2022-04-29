@@ -1,4 +1,4 @@
-const { prop, getModelForClass } = require('@typegoose/typegoose');
+import { prop, getModelForClass } from '@typegoose/typegoose';
 
 export enum Tags { 
     JavaScript = 'JavaScript',
@@ -12,11 +12,11 @@ export enum Tags {
     HTML = 'HTML',
     SQL = 'SQL',
     Modulo = 'Modulo',
-    Otros = 'Otros',
+    Otros = 'Otros'
 }
 export enum Type {
     Prep,
-    Lerning,
+    Lerning
 }
 
 class Reresponse{
@@ -40,8 +40,8 @@ export class Posts{
     @prop({ enum: Type, addNullToEnum: true })
     type: Type;
 
-    @prop({ enum: Tags, addNullToEnum: true })
-    tags: Array<Tags>;
+    // @prop({ enum: Tags, addNullToEnum: true })
+    // tags: Array<Tags>;
 
     @prop({ maxlength: 1500 })
     description: string;

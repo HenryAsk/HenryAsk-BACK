@@ -23,9 +23,11 @@ export const GET_USER_BY_ID = async(req: Request, res: Response) => {
                     linkedin: userById.linkedin,
                     own_henry_coin: userById.own_henry_coin,
                     give_henry_coin: userById.give_henry_coin,
-                    comments: userById.comments,
-                    theoric: userById.theoric,
-                    exercise: userById.exercise
+                    // posts: userById.posts,
+                    // answers: userById.answers,
+                    // comments: userById.comments,
+                    // theoric: userById.theoric,
+                    // exercise: userById.exercise
                 }
                 res.status(200).json(userById);
             } else {

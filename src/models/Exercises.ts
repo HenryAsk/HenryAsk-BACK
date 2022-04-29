@@ -5,7 +5,7 @@ import { getModelForClass, prop, Ref } from "@typegoose/typegoose";
 //importar Tags enum de modelo Post 
 
 export class Exercise{
-  //@prop({ ref: () => User, required: true }) //el id del user creador
+  //@prop({ Ref: () => User, required: true }) //el id del user creador
   //owner: Ref<User>;
 
   @prop({ type: () => String, required: true})
@@ -23,7 +23,7 @@ export class Exercise{
   @prop({ type: String, required: false })
   test?: string;
   
-  // @prop({ ref: () => Resolution, required: false })
+  // @prop({ Ref: () => Resolution, required: false })
   // resolution?: Array<Ref<Resolution>>;
 }
 

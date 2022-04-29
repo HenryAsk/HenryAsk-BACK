@@ -2,7 +2,8 @@ import { prop, getModelForClass, Ref } from '@typegoose/typegoose';
 import { Comments } from './Comments';
 import { Exercise } from './Exercises';
 import { Theoric } from './Theoric';
-
+import { Answer } from './Answers';
+import { Posts } from './Posts';
 
 enum Roles{
     ZERO,
@@ -54,11 +55,11 @@ export class User{
     @prop({ type: () => Number, default: 0 })
     give_henry_coin: number
 
-    // @prop()
-    // posts: Ref<Posts>
+    @prop({ Ref: () => Posts, default: [] })
+    posts: Ref<Posts>
 
-    // @prop()
-    // answers: Ref<Answers>
+    @prop({ Ref: () => Answer, default: [] })
+    answers: Ref<Answer>
 
     @prop({ Ref: () => Comments, default: [] })
     comments?: Ref<Comments> 
@@ -71,4 +72,4 @@ export class User{
 }
 
 export const UserModel = getModelForClass(User);
-module.exports = UserModel;
+// module.exports = UserModel;
