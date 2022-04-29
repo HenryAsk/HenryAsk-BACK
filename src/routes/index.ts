@@ -11,7 +11,7 @@ import userRouter from './userRoute';
 
 //Config routers below:
 router.use('/exercise', exerciseRouter);
-router.use('/comments', commentRouter);
+router.use('/comment', commentRouter);
 router.use('/theoric', theoricRouter);
 router.use('/answer', answerRouter);
 router.use('/post', postRouter);
