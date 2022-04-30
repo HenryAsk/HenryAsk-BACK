@@ -12,7 +12,7 @@ import { CommentModel } from '../../models/Comments';
 * @returns error? error : string
 * @author Agustín Villagrán <https://linkedin.com/in/agustín-villagrán>
 **/
-export const EDIT_COMMENTS = async (req: Request, res: Response) => {
+export const EDIT_COMMENT = async (req: Request, res: Response) => {
 
   try {
 
