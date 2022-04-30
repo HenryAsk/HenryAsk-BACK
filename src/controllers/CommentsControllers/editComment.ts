@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import { ExerciseModel } from '../../models/Exercises';
+import { CommentModel } from '../../models/Comments';
 
 /**
-* This controller must be used to edit Exercise content by its id. 
+* This controller must be used to edit Comments content by its id. 
 * If you don't send the ParamsReqBody descripted below, this controller
 * returns Error.
 * @Params (req: Request, res: Response)
@@ -12,7 +12,7 @@ import { ExerciseModel } from '../../models/Exercises';
 * @returns error? error : string
 * @author Agustín Villagrán <https://linkedin.com/in/agustín-villagrán>
 **/
-export const EDIT_EXERCISE = async (req: Request, res: Response) => {
+export const EDIT_COMMENTS = async (req: Request, res: Response) => {
 
   try {
 
@@ -21,9 +21,9 @@ export const EDIT_EXERCISE = async (req: Request, res: Response) => {
 
     if (id) {
       /**
-      *exerciseEdited: if ExerciseModel update its attributes, add the new ones here.
+      *commentEdited: if CommentModel update its attributes, add the new ones here.
       **/ 
-      const exerciseEdited = await ExerciseModel.updateOne({ _id: id }, {
+      const commentEdited = await CommentModel.updateOne({ _id: id }, {
         title: title && title,
         tags: tags && tags,
         description: description && description,
@@ -31,7 +31,7 @@ export const EDIT_EXERCISE = async (req: Request, res: Response) => {
         test: test && test
       });
 
-      res.status(200).json(`${exerciseEdited.matchedCount} exercise has been matched and ${exerciseEdited.modifiedCount} exercise has been modified `)
+      res.status(200).json(`${commentEdited.matchedCount} comment has been matched and ${commentEdited.modifiedCount} comment has been modified `)
 
     } else {
 
@@ -40,6 +40,6 @@ export const EDIT_EXERCISE = async (req: Request, res: Response) => {
     }
   } catch (err: string | any) {
 
-    res.status(400).json(`An error has been ocurred in controller EDIT_EXERCISE: ${err.message}`)
+    res.status(400).json(`An error has been ocurred in controller EDIT_COMMENT: ${err.message}`)
   }
 }

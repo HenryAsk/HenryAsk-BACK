@@ -1,17 +1,27 @@
 import { NextFunction, Request, Response } from 'express';
 import { ExerciseModel, Exercise } from '../../models/Exercises';
 
+/**
+* This controller must be used to get all Exercises contents. 
+* If you don't send the ParamsReqBody descripted below, this controller
+* returns Error.
+* @Params (req: Request, res: Response)
+* @returns error? error : Array<Model>
+* @author Agustín Villagrán <https://linkedin.com/in/agustín-villagrán>
+**/
 export const GET_ALL_EXERCISES = async (req: Request, res: Response, next: NextFunction) => {
 
-  if(req.query.id || req.query.word) next();
+  if(req.params.id || req.query.word) next();
 
   else{
     try{
 
       const allExercises:Array<Exercise> = await ExerciseModel.find({});
 
-      if(allExercises){
-        //use the map below to set the properties to send to the front
+      if(allExercises.length){
+        /**
+        *allExercisesMapped: use the map below to set the properties to send to the front
+        **/
         const allExercisesMapped = allExercises.map((el: Exercise) => {
           return {
             owner: el.owner,
@@ -26,7 +36,7 @@ export const GET_ALL_EXERCISES = async (req: Request, res: Response, next: NextF
         res.status(200).json(allExercisesMapped);
 
       } else {
-        throw new Error("No exercises have been founded, please check this with our admins.");
+        throw new Error("No exercises has been founded, please check this with our admins.");
       }
     } catch (err: any | string) {
       res.status(400).json(`An error has been ocurred in controller GET_ALL_EXERCISES: ${err.message}`);

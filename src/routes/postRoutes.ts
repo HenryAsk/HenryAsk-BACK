@@ -6,9 +6,9 @@ import { Router } from 'express';
 
 const router = Router();
 
-router.get('/', GET_POST);
 router.put('/', EDIT_POST);
 router.post('/', POST_POST);
+router.get('/:id', GET_POST);
 router.delete('/', DELETE_POST);
 
 export = router;

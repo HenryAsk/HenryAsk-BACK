@@ -11,6 +11,12 @@ export const EDIT_USER = async (req: Request, res: Response) => {
             email,
             country,
             city,
+            role,
+            posts,
+            answers,
+            comments,
+            theorics,
+            exercises,
             profile_picture,
             biography,
             github,
@@ -28,6 +34,12 @@ export const EDIT_USER = async (req: Request, res: Response) => {
                 email: email && email,
                 country: country && country,
                 city: city && city,
+                role: role && role,
+                posts: posts && posts,
+                answers: answers && answers,
+                comments: comments && comments,
+                theorics: theorics && theorics,
+                exercises: exercises && exercises,
                 profile_picture: profile_picture && profile_picture,
                 biography: biography && biography,
                 github: github && github,
@@ -35,7 +47,7 @@ export const EDIT_USER = async (req: Request, res: Response) => {
             });
             res.status(200).json(`${userEdited.matchedCount} document has been matched and ${userEdited.modifiedCount} document has been modified `);
         }
-    } catch(err: any | unknown) {
-        res.status(404).send(err);
+    } catch(err: any | string) {
+        res.status(404).send(err.message);
     }
 };

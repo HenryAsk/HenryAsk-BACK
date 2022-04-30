@@ -67,10 +67,10 @@ export class User{
     comments?: Ref<Comments> 
 
     @prop({ Ref: () => Theoric, default: [] })
-    theoric?: Ref<Theoric>[]
+    theorics?: Ref<Theoric>[]
 
     @prop({ Ref: () => Exercise, default: [] })
-    exercise?: Ref<Exercise>[]
+    exercises?: Ref<Exercise>[]
 }
 
 export const UserModel = getModelForClass(User);

@@ -5,9 +5,9 @@ import { GET_THEORIC } from "../controllers/TheoricsControllers/getTheoric";
 import { Router } from "express";
 
 const router = Router();
-router.get('/', GET_THEORIC);
 router.put('/', EDIT_THEORIC);
 router.post('/', POST_THEORIC);
+router.get('/:id', GET_THEORIC);
 router.delete('/', DELETE_THEORIC);
 
 export = router;

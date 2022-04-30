@@ -15,6 +15,12 @@ export enum Tags {
   SQL = "SQL",
   Modulo = "Modulo",
   Otros = "Otros",
+  M1 = "M1",
+  M2 = "M2",
+  M3 = "M3",
+  M4 = "M4",
+  PI = "PI",
+  PG = "PG",
 }
 export enum Type {
   Prep,
@@ -23,11 +29,11 @@ export enum Type {
 
 @modelOptions({options:{allowMixed:0}})
 export class Post{
-    @prop({ Ref: () => User, /* required: true */ }) //el id del user creador
-    owner: Ref<User>;
+  @prop({ Ref: () => User, /* required: true */ }) //el id del user creador
+  owner: Ref<User>;
 
-    @prop({ /* required: true ,*/type: String, trim: true, lowercase: true })
-    email: string;
+  @prop({ /* required: true ,*/type: String, trim: true, lowercase: true })
+  email: string;
 
   @prop({ required: true, trim: true })
   question: string;
@@ -41,7 +47,7 @@ export class Post{
   @prop({ maxlength: 1500 })
   description: string;
 
-  @prop({ required: true })
+  @prop({ required: true, default: true })
   open: boolean;
 
   @prop({ timesstamps: true })

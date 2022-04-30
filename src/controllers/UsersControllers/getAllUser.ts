@@ -24,8 +24,8 @@ export const GET_ALL_USER = async (_req: Request, res: Response) => {
                     posts:el.posts,
                     answers: el.answers,
                     comments: el.comments,
-                    theoric: el.theoric,
-                    exercise: el.exercise
+                    theorics: el.theorics,
+                    exercises: el.exercises
                 })
             });
 

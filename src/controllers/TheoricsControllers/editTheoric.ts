@@ -1,52 +1,37 @@
 import { Response, Request } from "express";
-import {Theoric, TheoricModel } from "../../models/Theorics";
+import { TheoricModel } from "../../models/Theorics";
 
-/*Este controlador sirve para editar el contenido teórico. Primero se busca el contenido que se quiere editar. Luego se edita
-sólo las propiedades que se soliciten. Finalmente se guarda en la base de datos. */
-
+/**
+* This controller must be used to edit Exercise content. 
+* If you don't send the ParamsReqBody descripteds below, this controller
+* returns Error.
+* @Params (req: Request, res: Response)
+  *@ParamsReqBody (id: string, title: string, content: string, author:
+  *string, images: string, comments: string )
+* @returns error? error : string
+* @author 
+** Alejo Bengoechea <https://linkedin.com/in/alejobengo> ,
+** Agustín Villagrán <https://linkedin.com/in/agustín-villagrán>
+**/
 export const EDIT_THEORIC = async (req: Request, res: Response) => {
-  try{
+  try {
     const { id, title, content, author, images, comments } = req.body;
-    if(!id){
-      res.status(404).json({
-        error: "Por favor, indique el contenido que quiere modificar",
-      });
+
+    if (!id) {
+
+      throw new Error("Must be enter an id.")
     }
-    const oldData: Theoric = await TheoricModel.findOne({ _id: id });
-    await TheoricModel.deleteOne({ _id: id });
-    interface NewData {
-      title: string;
-      content: string;
-      author: Array<string>;
-      images?: Array<string>;
-      comments?: Array<string>;
-    }
-    const newData: NewData = {
-      title: oldData.title,
-      content: oldData.content,
-      author: oldData.author,
-      images: oldData.images || undefined,
-      comments: oldData.comments || undefined,
-    };
+    const theoricEdited = await TheoricModel.updateOne({ _id: id }, {
+      title: title && title,
+      content: content && content,
+      author: author && author,
+      images: images && images,
+      comments: comments && comments,
+    })
+    res.json(`${theoricEdited.matchedCount} document has been matched and ${theoricEdited.modifiedCount} document has been modified `);
 
-    if(title){
-      newData.title = title;
-
-    } else if(content){
-      newData.content = content;
-
-    } else if(author){
-      newData.author = author;
-
-    } else if(images){
-      newData.images = images;
-      
-    } else if(comments){
-      newData.comments = comments;
-    }
-    await TheoricModel.create(newData);
-    res.json("Materia editado exitosamente. " + oldData);
   } catch (err: string | any) {
-    console.log("Algo salió mal en el controller editTheoric: ", err.message);
+
+    res.status(400).json(`An error has been ocurred in controller EDIT_THEORIC ${err.message}`);
   }
 };
