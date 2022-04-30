@@ -5,6 +5,10 @@ export const EDIT_ANSWER = async (req: Request, res: Response) => {
     try{
         const { id, content } = req.body;
 
+        if(!id || !content){
+            throw new Error ('Id y content deben ser especificados.')
+        }
+
         const editAnswer = await AnswerModel.updateOne({ _id: id }, {
             content: content && content
         });

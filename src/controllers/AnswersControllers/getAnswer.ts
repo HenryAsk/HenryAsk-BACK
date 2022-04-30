@@ -3,16 +3,16 @@ import { AnswerModel, Answer } from "../../models/Answers";
 
 export const GET_ANSWER = async (req: Request, res: Response) => {
     try{
-        const { owner, content, posts } = req.body;
+        const { posts } = req.body;
 
-        if(!owner || !content || !posts){
-            res.status(404).send('Respuesta no encontrada.')
+        if(!posts){
+            throw new Error ('Respuesta no encontrada.');
         }
         else {
             let getAnswer: any | Array<Answer> = await AnswerModel.find({ posts: posts });
 
             if(getAnswer){
-                getAnswer = getAnswer.map((el: Answer) => el.content);
+                getAnswer = getAnswer.map((el: Answer) => { el.owner, el.content });
 
                 res.status(200).json(getAnswer);
             }

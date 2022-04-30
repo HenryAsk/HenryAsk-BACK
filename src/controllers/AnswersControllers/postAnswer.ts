@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-const { AnswerModel } = require('../../models/Answers');
+import { AnswerModel } from '../../models/Answers';
 
 export const POST_ANSWER = async (req: Request, res: Response) => {
     try{
