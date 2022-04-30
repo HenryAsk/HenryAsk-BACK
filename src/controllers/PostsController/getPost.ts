@@ -1,48 +1,45 @@
 import { Response, Request } from "express";
-import { PostModel} from '../../models/Posts';
+import { Post, PostModel} from '../../models/Posts';
 
 export const GET_POST =async (req: Request, res: Response) => {
     try {
-        const { description, question, tags, type} = req.query;
+        const { word, type} = req.query;
         const { id } = req.params;
-        
+        let searchedPostObject: null | Post;
+        let searchedPostArray: (void | Post)[];
         if(id){
-            const searchPost = await PostModel.findById(id);
-            res.status(200).json(searchPost);
-            
+            searchedPostObject = await PostModel.findById( id );
+            if(searchedPostObject){
+                res.status(200).json(searchedPostObject);
+            } else {
+                throw new Error("La id ingresada no matchea con ningún post existente.")
+            }
         }else if (type){
-            const searchPost = await PostModel.find( { type:type } );
-            if(searchPost.length > 0){
-                res.json(searchPost);
+            searchedPostArray = await PostModel.find( { type:type } );
+            if( searchedPostArray.length ){
+                res.status(200).json(searchedPostArray);
             }else{
-                res.status(404).json({error: 'no se encontro consulta disponible'});
+                res.status(400).json({error: 'El type ingresado no matchea con ningún post existente.'});
             } 
-        }else if(!description && !question && ! tags) {
-            const searchPost = await PostModel.find({});
-            res.status(200).json(searchPost);
-        }else if (description){
-            const searchPost = await PostModel.find( { description: { $regex: `${description}`} } );
-            if(searchPost.length > 0){
-                res.json(searchPost);
-            }else{
-                res.status(404).json({error: 'no se encontro consulta disponible'});
-            }            
-        }else if(question){
-            const searchPost = await PostModel.find( { question: { $regex: `${question}`} } );
-            if(searchPost.length > 0){
-                res.json(searchPost)
-            }else{
-                res.status(404).json({error: 'no se encontro consulta disponible'});
-            } 
-        }else if (tags){
-            const searchPost = await PostModel.find( { tags: { $regex: `${tags}`} } );
-            if(searchPost.length > 0){
-                res.json(searchPost);
-            }else{
-                res.status(404).json({error: 'no se encontro consulta disponible'});
-            } 
+        }else if(word){
+            searchedPostArray = await PostModel.find({
+                $or:[
+                    {question:{$regex:`/${word}/`, $options: "i"}},
+                    {tags:{$regex:`/${word}/`, $options: "i"}},
+                    {description:{$regex:`/${word}/`, $options: "i"}},
+                ]
+            });
+            if(searchedPostArray.length){
+                res.status(200).json(searchedPostArray);
+            } else{
+                throw new Error("El parámetro de búsqueda no retorna ningún resultado.")
+            }
+        }else if( !word && !type && !id ) {
+
+            const searchedPostArray = await PostModel.find({});
+            res.status(200).json(searchedPostArray);
         }
     } catch(err: string | any){
-        res.status(404).send(err.message);
+        res.status(400).send(`Error en el controller GET_POST: ${err.message}`);
     }
 };
