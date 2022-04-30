@@ -35,7 +35,7 @@ export enum Type {
 
 @modelOptions({ options: { allowMixed: 1 } })
 export class Post {
-  @prop({ Ref: () => "owner" }) //el id del user creador
+  @prop({ ref: "User", populated: true }) //el id del user creador
   owner: Ref<User>;
 
   @prop({ type: () => [String] /* required: true */ }) //el id del user creador
