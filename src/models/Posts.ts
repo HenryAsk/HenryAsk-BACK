@@ -1,6 +1,12 @@
-import { prop, getModelForClass, modelOptions, PropType, Ref } from '@typegoose/typegoose';
-import { User } from './Users';
-import { Answer } from './Answers';
+import {
+  prop,
+  getModelForClass,
+  modelOptions,
+  PropType,
+  Ref,
+} from "@typegoose/typegoose";
+import { User } from "./Users";
+import { Answer } from "./Answers";
 
 export enum Tags {
   JavaScript = "JavaScript",
@@ -21,18 +27,18 @@ export enum Type {
   Learning,
 }
 
-@modelOptions({options:{allowMixed:0}})
-export class Post{
-    @prop({ Ref: () => User, /* required: true */ }) //el id del user creador
-    owner: Ref<User>;
+@modelOptions({ options: { allowMixed: 0 } })
+export class Post {
+  @prop({ Ref: () => User /* required: true */ }) //el id del user creador
+  owner: Ref<User>;
 
-    @prop({ /* required: true ,*/type: String, trim: true, lowercase: true })
-    email: string;
+  @prop({ /* required: true ,*/ type: String, trim: true, lowercase: true })
+  email: string;
 
   @prop({ required: true, trim: true })
   question: string;
 
-  @prop({ enum: Type, /* required:true */ })
+  @prop({ enum: Type /* required:true */ })
   type: Type;
 
   @prop({ enum: Tags, type: () => [String], required: true }, PropType.ARRAY)
@@ -47,7 +53,7 @@ export class Post{
   @prop({ timesstamps: true })
   date: Date;
 
-  @prop({enum: Answer, type: () => [String] }, PropType.ARRAY)
+  @prop({ enum: Answer, type: () => [String] }, PropType.ARRAY)
   answers: Array<Answer>;
 }
 
