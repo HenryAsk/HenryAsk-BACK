@@ -1,5 +1,5 @@
 import { prop, getModelForClass, Ref, modelOptions } from '@typegoose/typegoose';
-import { Comments } from './Comments';
+import { Comment } from './Comments';
 import { Exercise } from './Exercises';
 import { Theoric } from './Theorics';
 import { Answer } from './Answers';
@@ -63,14 +63,14 @@ export class User{
     @prop({ Ref: () => Answer, default: [] })
     answers: Ref<Answer>
 
-    @prop({ Ref: () => Comments, default: [] })
-    comments?: Ref<Comments> 
+    @prop({ Ref: () => Comment, default: [] })
+    comments?: Ref<Comment> 
 
     @prop({ Ref: () => Theoric, default: [] })
-    theoric?: Ref<Theoric>[]
+    theorics?: Ref<Theoric>[]
 
     @prop({ Ref: () => Exercise, default: [] })
-    exercise?: Ref<Exercise>[]
+    exercises?: Ref<Exercise>[]
 }
 
 export const UserModel = getModelForClass(User);

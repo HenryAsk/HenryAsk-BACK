@@ -2,7 +2,6 @@ import { getModelForClass, modelOptions, prop, PropType, Ref } from "@typegoose/
 import { User } from "./Users";
 import { Tags } from "./Posts";
 //import { Resolution } from "../../Models/Post"; 
-//importar Tags enum de modelo Post 
 
 @modelOptions({options:{allowMixed:0}})
 export class Exercise{

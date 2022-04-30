@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-const Posts = require('../../models/Posts');
+import {Post, PostModel} from '../../models/Posts';
 
 export const EDIT_POST = async (req: Request, res: Response) => {
     try{
@@ -11,19 +11,11 @@ export const EDIT_POST = async (req: Request, res: Response) => {
             });
         }
 
-        const oldPost = await Posts.findOne({ _id: id });
-        await Posts.deleteOne({ _id: id });
-        
-        if(description){
-            oldPost.description = description;
-            
-        }else if (question){
-            oldPost.question = question;
-
-        }else if(tags){
-            oldPost.tags = tags; 
-        }
-        await Posts.create(oldPost);
+        const oldPost = await PostModel.updateOne({ _id: id },{
+            description: description && description ,
+            question: question && question ,
+            tags: tags && tags
+        });
         res.json('Los cambios fueron realizados correctamente');     
 
     } catch(err: string | any){

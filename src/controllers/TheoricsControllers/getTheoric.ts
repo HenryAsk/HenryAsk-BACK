@@ -5,44 +5,50 @@ import {TheoricModel, Theoric} from "../../models/Theorics";
 
 export const GET_THEORIC = async (req: Request, res: Response) => {
   try{
-    const { title, author } = req.query;
-    let contenido;
+    const { word } = req.query;
+    const { id } = req.params;
+    let theoricArrayFounded: Array<Theoric> | Array<void> = [];
+    let searchAux: Array<Theoric> | Array<void>;
+    let theoricObjFounded: Theoric | object = {};
+    let status:number = 404;
+    let error: string = "";
 
-    if(!title && !author){
-      res.status(404).json({
-        error:
-          "Por favor, indicar el título o autor del teórico que quiere buscar.",
-      });
-    } else if(title){
-      const search:Array<Theoric> = await TheoricModel.find({ title: title });
-      
-      if(search){
-        contenido = search;
-      } else {
-        contenido = { error: "Este título no existe." };
+      if(id){
+        let searchAux: Theoric = await TheoricModel.findOne({_id:id});
+        if(!searchAux){
+          status = 400;
+          error = "No encontramos material teórico con este id.";
+        } else {
+          status = 200;
+          theoricObjFounded = searchAux;
+        }
+      } else if(word){
+        searchAux = await TheoricModel.find({
+          $or: [
+            { title: {$regex: `/${word}/`, $options: "i"} },
+            { author: {$regex: `/${word}/`, $options: "i"} },
+            { content: {$regex: `/${word}/`, $options: "i"} },
+          ]});
+        
+        if(!searchAux.length){
+
+          status = 400;
+          error =  "No encontramos material teórico con este término de búsqueda.";
+
+        } else {
+          status = 200;
+          theoricArrayFounded = searchAux;
+        }
       }
-    } else if(author){
-      const search:Array<Theoric> = await TheoricModel.find({ author: author });
-      
-      if(typeof search === "object" && search.length === 0){
-        res.status(404).json({
-          error:
-            "No se ha encontrado. Puede ser por tres motivos. 1)El autor no coincide con ningúno en la base de datos. 2)Si quiere enviar un solo autor, hágalo como string. 3)Si quiere enviar más de un autor, hágalo como Array<string>",
-        });
-      } else {
-        contenido = search;
-      }
-    } else if(title && author){
-      const search:Array<Theoric> = await TheoricModel.find({ title: title, author: author });
-      
-      if(search){
-        contenido = search;
-      } else {
-        contenido = { error: "El titulo y auto no coinciden en la búsqueda." };
-      }
-    }
-    res.json(contenido);
+        res.status(status).json(theoricArrayFounded.length
+      ? theoricArrayFounded 
+      : theoricObjFounded
+        ? theoricObjFounded
+        : error
+      );
   } catch(err: string | any){
-    console.log("Algo salió mal en el controller getTheoric: ", err.message);
+
+    res.status(400).json(`Algo salió mal en el controller getTheoric: ${err.message}`);
+
   }
 };
