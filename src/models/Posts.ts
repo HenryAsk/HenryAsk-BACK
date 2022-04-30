@@ -33,25 +33,10 @@ export enum Type {
   Learning,
 }
 
-<<<<<<< HEAD
 @modelOptions({ options: { allowMixed: 0 } })
 export class Post {
-  @prop({ Ref: () => User /* required: true */ }) //el id del user creador
-  owner: Ref<User>;
-
-  @prop({ /* required: true ,*/ type: String, trim: true, lowercase: true })
-=======
-@modelOptions({options:{allowMixed:0}})
-export class Post{
-  @prop({ Ref: () => User, /* required: true */ }) //el id del user creador
-  owner: Ref<User>;
-
-  @prop({ /* required: true ,*/type: String, trim: true, lowercase: true })
->>>>>>> f480439ebdc1245bf8d8d3a9747057e37ed58a6d
-  email: string;
-
-  @prop({ required: true, trim: true })
-  question: string;
+  @prop({ type: () => [String] /* required: true */ }) //el id del user creador
+  owner: Array<string>;
 
   @prop({ enum: Type /* required:true */ })
   type: Type;
