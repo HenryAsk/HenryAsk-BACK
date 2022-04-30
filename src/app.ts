@@ -1,3 +1,4 @@
+import fileUpload from 'express-fileupload';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import routes from './routes/index';
@@ -22,6 +23,10 @@ server.use((_req: Request, res: Response, next: NextFunction) => {
 
 server.set('port', process.env.PORT || 3004);
 server.use(express.json());
+server.use(fileUpload({
+    useTempFiles : true,
+    tempFileDir : './uploads'
+}));
 
 server.use('/', routes);
 server.listen(server.get('port'), () => {
