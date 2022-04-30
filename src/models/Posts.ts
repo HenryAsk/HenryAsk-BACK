@@ -33,9 +33,9 @@ export enum Type {
   Learning,
 }
 
-@modelOptions({ options: { allowMixed: 0 } })
+@modelOptions({ options: { allowMixed: 1 } })
 export class Post {
-  @prop({ Ref: () => User /* required: true */ }) //el id del user creador
+  @prop({ Ref: () => "owner" }) //el id del user creador
   owner: Ref<User>;
 
   @prop({ type: () => [String] /* required: true */ }) //el id del user creador
@@ -47,7 +47,10 @@ export class Post {
   @prop({ enum: Tags, type: () => [String], required: true }, PropType.ARRAY)
   tags: Array<Tags>;
 
-  @prop({ maxlength: 1500 })
+  @prop({ maxlength: 1500, required: true })
+  question: string;
+
+  @prop({ maxlength: 1500, required: true })
   description: string;
 
   @prop({ required: true, default: true })
