@@ -16,19 +16,14 @@ export const EDIT_COMMENT = async (req: Request, res: Response) => {
 
   try {
 
-    const { id } = req.query;
-    const { title, tags, description, code, test } = req.body;
+    const { id, content } = req.body;
 
     if (id) {
       /**
       *commentEdited: if CommentModel update its attributes, add the new ones here.
       **/ 
       const commentEdited = await CommentModel.updateOne({ _id: id }, {
-        title: title && title,
-        tags: tags && tags,
-        description: description && description,
-        code: code && code,
-        test: test && test
+        content: content && content
       });
 
       res.status(200).json(`${commentEdited.matchedCount} comment has been matched and ${commentEdited.modifiedCount} comment has been modified `)

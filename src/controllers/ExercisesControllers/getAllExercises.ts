@@ -11,12 +11,24 @@ import { ExerciseModel, Exercise } from '../../models/Exercises';
 **/
 export const GET_ALL_EXERCISES = async (req: Request, res: Response, next: NextFunction) => {
 
-  if(req.params.id || req.query.word) next();
+  if(req.query.id || req.query.word) next();
 
   else{
     try{
 
-      const allExercises:Array<Exercise> = await ExerciseModel.find({});
+      const allExercises:Array<Exercise> = await ExerciseModel.find({},{
+        _id:1,
+        owner:1,
+        title:1,
+        tags:1,
+        description:1,
+        code:1,
+        test:1,
+        createdAt:1,
+        updatedAt:1,
+        }).populate("owner", 
+          "_id profile_picture role user_name" 
+      );
 
       if(allExercises.length){
         /**

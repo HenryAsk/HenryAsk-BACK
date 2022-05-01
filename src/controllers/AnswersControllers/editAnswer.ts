@@ -13,7 +13,7 @@ export const EDIT_ANSWER = async (req: Request, res: Response) => {
             content: content && content
         });
 
-        res.status(200).json(editAnswer);
+        res.status(200).json(`${editAnswer.modifiedCount} respuesta modificada`);
 
     } catch(err: any | unknown){
         res.status(404).send(err.message);

@@ -16,10 +16,15 @@ export const CREATE_COMMENT = async (req: Request, res: Response ) => {
     const { owner,  answer, content } = req.body;
     
     if( owner &&  answer  && content ){
-      const commentRepeatedOrNot: Comment | null = await CommentModel.findOne({ content: content });
+      const commentRepeatedOrNot: Comment | null = await CommentModel.findOne({
+        $and:[
+          { content: content },
+          {owner:owner}
+        ]
+      });
       
       if(commentRepeatedOrNot){
-        throw new Error("A comment with that content has already exists, please check it");
+        throw new Error("A comment with that content and owner has already exists.");
 
       } else {
         const commentCreated: Comment = await CommentModel.create({
@@ -28,12 +33,10 @@ export const CREATE_COMMENT = async (req: Request, res: Response ) => {
           content 
       });
         if(commentCreated){ 
-          res.status(200).json("The comment has been created succesfully.");
+          res.status(200).json(`The comment has been created succesfully: ${commentCreated}`);
         }
         else throw new Error("The comment hasn't been created, please check the inputs.");
       }
-    } else {
-      throw new Error("The properties owner, answer, and content must be completed.");
     }
   } catch(err: string | any){
     res.status(400).json(`An error has been ocurred in controller CREATE_COMMENT: ${err.message}`);

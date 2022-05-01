@@ -7,6 +7,7 @@ import {
 } from "@typegoose/typegoose";
 import { User } from "./Users";
 import { Answer } from "./Answers";
+import { TimeStamps } from "@typegoose/typegoose/lib/defaultClasses";
 
 export enum Tags {
   JavaScript = "JavaScript",
@@ -41,33 +42,27 @@ export enum Type {
 }
 
 @modelOptions({options:{allowMixed:0}})
-export class Post{
-  @prop({ ref: () => User, required: true }) //el id del user creador
-  owner: Ref<User>;
+export class Post extends TimeStamps{
+  @prop({ ref: "User", required: true, trim:true})
+  owner!: Ref<User>;
   
-  @prop({type: () => [String], required: true})
-  ownerData: Array<String>
-  
-  @prop({ enum: Type /* required:true */ })
-  type: Type;
+  @prop({ enum: Type, required:true })
+  type!: Type;
 
   @prop({ enum: Tags, type: () => [String], required: true }, PropType.ARRAY)
-  tags: Array<Tags>;
+  tags!: Array<Tags>;
 
-  @prop({ maxlength: 1500, required: true })
-  question: string;
+  @prop({ maxlength: 1500, required: true, trim:true})
+  question!: string;
 
-  @prop({ maxlength: 1500, required: true })
-  description: string;
+  @prop({ maxlength: 1500, required: true, trim:true})
+  description!: string;
 
-  @prop({ required: true, default: true })
-  open: boolean;
+  @prop({ type: Boolean , required: true, default: true })
+  open!: boolean;
 
-  @prop({ timesstamps: true })
-  date: Date;
-
-  @prop({ enum: Answer, type: () => [String] }, PropType.ARRAY)
-  answers: Array<Answer>;
+  @prop({ ref: "Answer", type: () => [String] }, PropType.ARRAY)
+  answers?: Array<Answer>;
 }
 
 export const PostModel = getModelForClass(Post);

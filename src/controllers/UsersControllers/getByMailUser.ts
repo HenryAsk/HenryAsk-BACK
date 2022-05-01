@@ -12,7 +12,12 @@ export const GET_USER_BY_MAIL = async (
     if (!email) next();
 
     if (email) {
-      let userByMail = await User.findOne({ email: email });
+      let userByMail = await User.findOne({ email: email })
+      .populate("posts","_id")
+      .populate("answers","_id")
+      .populate("comments","_id")
+      .populate("theorics","_id")
+      .populate("exercises","_id");
 
       if (userByMail) {
         userByMail = {
@@ -33,9 +38,10 @@ export const GET_USER_BY_MAIL = async (
           posts: userByMail.posts,
           answers: userByMail.answers,
           comments: userByMail.comments,
-          theoric: userByMail.theoric,
-          exercise: userByMail.exercise,
+          theorics: userByMail.theorics,
+          exercises: userByMail.exercises,
         };
+        
         res.status(200).json(userByMail);
       } else {
         res.status(404).send("No se encontró el usuario requerido.");

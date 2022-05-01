@@ -4,17 +4,29 @@ import {TheoricModel} from "../../models/Theorics";
 /*Este es el controller para borrar contenido teórico.*/
 
 export const DELETE_THEORIC = async (req: Request, res: Response) => {
+  
   try{
-    const { id } = req.body;
+
+    const { id } = req.query;
+
     if(id){
-      await TheoricModel.deleteOne({ _id: id });
-      res.json("Se ha eliminado este contenido teórico con id: " + id);
+
+      const theoricDeleted = await TheoricModel.deleteOne({ _id: id });
+
+      if(theoricDeleted.deletedCount){
+        
+        res.status(200).json(`Se ha eliminado ${theoricDeleted.deletedCount} contenido teórico con el id ingresado.`);
+      
+      }else{
+
+        throw new Error("No se encontraron contenidos teoricos existentes con el id ingresado.");
+      }
     } else {
-      res
-        .status(404)
-        .json({ error: "Por favor, indique el contenido que quiere eliminar" });
+
+      throw new Error("Por favor, ingrese el id del contenido que quiere eliminar.");
     }
   } catch(err: string | any){
-    console.log("Algo salió mal en el controller deleteTheoric: ", err.message);
+
+    res.status(400).json(`Algo salió mal en el controller deleteTheoric: ${err.message}`);
   }
 };

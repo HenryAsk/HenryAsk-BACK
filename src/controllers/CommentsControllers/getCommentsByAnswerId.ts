@@ -15,17 +15,20 @@ import { CommentModel, Comment } from "../../models/Comments";
 **/
 export const GET_COMMENTS_BY_ANSWER_ID =async (req: Request, res: Response ) => {
   try {
-    if(req.params.answerId){
-      const answerId = req.params.answerId;
+    if(req.query.answerId){
+      const answerId = req.query.answerId;
       /**
       * searchedCommentByAnswerId: Switch to zero the properties that don't need send to front-end
       **/
-      const searchedCommentByAnswerId: Comment | null = await CommentModel.findOne({answer:answerId}, {
+      const searchedCommentByAnswerId: (Comment | void)[] = await CommentModel.find({answer:answerId}, {
         _id:1,
         owner:1,
         content:1,
         answer:1,
-      });
+      }).populate("answer","_id")
+      .populate("owner", 
+      "profile_picture user_name" 
+      );
       if(searchedCommentByAnswerId){
         res.status(200).json(searchedCommentByAnswerId);
 

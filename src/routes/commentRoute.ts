@@ -9,7 +9,7 @@ const router = Router();
 router.put('/', EDIT_COMMENT);
 router.post('/', CREATE_COMMENT);
 router.delete('/', DELETE_COMMENT);
-router.get('/:id',GET_COMMENTS_BY_ANSWER_ID);
+router.get('/',GET_COMMENTS_BY_ANSWER_ID);
 
 
 

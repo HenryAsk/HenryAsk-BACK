@@ -6,7 +6,12 @@ export const GET_USER_BY_ID = async (req: Request, res: Response) => {
     const { id } = req.params;
 
     if (id) {
-      let userById = await User.findOne({ _id: id });
+      let userById = await User.findOne({ _id: id })
+      .populate("posts","_id")
+      .populate("answers","_id")
+      .populate("comments","_id")
+      .populate("theorics","_id")
+      .populate("exercises","_id")
 
       if (userById) {
         userById = {
@@ -27,9 +32,10 @@ export const GET_USER_BY_ID = async (req: Request, res: Response) => {
           posts: userById.posts,
           answers: userById.answers,
           comments: userById.comments,
-          theoric: userById.theoric,
-          exercise: userById.exercise,
+          theorics: userById.theorics,
+          exercises: userById.exercises,
         };
+        
         res.status(200).json(userById);
       } else {
         res.status(404).send("No se encontró el usuario requerido.");

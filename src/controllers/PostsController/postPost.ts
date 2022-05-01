@@ -3,11 +3,11 @@ import { PostModel, Post } from "../../models/Posts";
 
 export const POST_POST = async (req: Request, res: Response) => {
   try {
-    const { question, tags, description, open, owner, ownerData, type } =
+    const { question, tags, description, open, owner, type } =
       req.body;
     let createPost;
 
-    if (!question || !description || !tags) {
+    if (!question || !description || !tags.length) {
       res.status(404).json({
         error: "completar los campos de consultas, detalles y tags",
       });
@@ -17,7 +17,7 @@ export const POST_POST = async (req: Request, res: Response) => {
       if (questionExist !== null) {
         return res
           .status(404)
-          .json({ error: "ya existe una consulta con estas caracteristicas" });
+          .json({ error: `Ya existe una consulta con estas caracteristicas: ${questionExist}` });
       }
       if (question && description && tags) {
         createPost = {
@@ -26,7 +26,6 @@ export const POST_POST = async (req: Request, res: Response) => {
           description,
           open,
           owner,
-          ownerData,
           type,
         };
         PostModel.create(createPost)

@@ -11,21 +11,22 @@ import { CommentModel } from '../../models/Comments';
 * @author Agustín Villagrán <https://linkedin.com/in/agustín-villagrán>
 **/
 export const DELETE_COMMENT = async (req: Request, res: Response) => {
-  try{
-    if(req.query.id){
-      const deletedComment = await CommentModel.deleteOne({ _id: req.query.id });
+  try {
+    if (!req.query.id) {
+
+      throw new Error("The id entered is undefined or null, please try again.");
       
-      if(!req.query.id){
-        res.status(400).json("The id entered is undefined or null, please try again.");
+    } else {
+      const deletedComment = await CommentModel.deleteOne({ _id: req.query.id });
 
-      }else if(deletedComment){
-        res.status(200).json(`${deletedComment.deletedCount} have been deleted`); //deletedCount is a object's property returned by the deletedOne query
+      if (deletedComment.deletedCount) {
+        res.status(200).json(`${deletedComment.deletedCount} has been deleted.`); //deletedCount is a object's property returned by the deletedOne query
 
-      } else if (!deletedComment){
-        throw new Error('0 have been matched with the id entered, please check the id entered.');
+      } else {
+        throw new Error(`${deletedComment.deletedCount} have been matched with the id entered, please check the id entered.`);
       }
     }
-  } catch(err: string | any){
+  } catch (err: string | any) {
     res.status(400).json(`An error has been ocurred in controller DELETE_COMMENT: ${err.message}`);
   }
 };

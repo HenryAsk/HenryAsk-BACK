@@ -16,8 +16,7 @@ export const EDIT_EXERCISE = async (req: Request, res: Response) => {
 
   try {
 
-    const { id } = req.query;
-    const { title, tags, description, code, test } = req.body;
+    const { id , title, tags, description, code, test } = req.body;
 
     if (id) {
       /**
@@ -29,7 +28,7 @@ export const EDIT_EXERCISE = async (req: Request, res: Response) => {
         description: description && description,
         code: code && code,
         test: test && test
-      });
+      },{timestamps:true});
 
       res.status(200).json(`${exerciseEdited.matchedCount} exercise has been matched and ${exerciseEdited.modifiedCount} exercise has been modified `)
 

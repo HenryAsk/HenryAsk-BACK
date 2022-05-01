@@ -1,20 +1,31 @@
 import { prop, getModelForClass, Ref, modelOptions } from '@typegoose/typegoose';
+import { TimeStamps } from '@typegoose/typegoose/lib/defaultClasses';
 import { Comment } from './Comments';
 import { Exercise } from './Exercises';
 import { Theoric } from './Theorics';
 import { Answer } from './Answers';
 import { Post } from './Posts';
 
-
+/**
+ * Enum Roles:
+ * ZERO: usuarios logueados no inscriptos en Prep Course
+ * ONE: usuarios logueados en Prep Course 
+ * TWO: usuarios logueados en learning (aprobaron Prep Course)
+ * THREE: usuarios logueados TA's
+ * FOUR: usuarios logueados instructores
+ * FIVE: creadores de plataforma (admins)
+**/
 enum Roles{
-    ZERO,
-    ONE,
+    ZERO, 
+    ONE, 
     TWO,
-    THREE
+    THREE,
+    FOUR,
+    FIVE
 }
 
 @modelOptions({ options: { allowMixed: 0 } })
-export class User{
+export class User extends TimeStamps{
     @prop({ required: false, trim: true, default: "" })
     first_name: string;
 
@@ -22,7 +33,7 @@ export class User{
     last_name: string;
 
     @prop({ required: true, unique: true, trim: true, lowercase: true })
-    email: string;
+    email!: string;
 
     @prop({ enum: Roles, addNullToEnum: false, default: 0 })
     role: Roles;
@@ -43,7 +54,7 @@ export class User{
     biography?: string;
 
     @prop({ required: true, minlength: 6, lowercase: true })
-    password: string;
+    password!: string;
 
     @prop({ type: () => String})
     github: string
@@ -57,19 +68,19 @@ export class User{
     @prop({ type: () => Number, default: 0 })
     give_henry_coin: number
 
-    @prop({ Ref: () => Post, default: [] })
+    @prop({ ref: "Post", default: [] })
     posts: Ref<Post>
 
-    @prop({ Ref: () => Answer, default: [] })
+    @prop({ ref: "Answer", default: [] })
     answers: Ref<Answer>
 
-    @prop({ Ref: () => Comment, default: [] })
-    comments?: Ref<Comment> 
+    @prop({ ref: "Comment", default: [] })
+    comments?: Ref<Comment>
 
-    @prop({ Ref: () => Theoric, default: [] })
+    @prop({ ref: "Theoric", default: [] })
     theorics?: Ref<Theoric>[]
 
-    @prop({ Ref: () => Exercise, default: [] })
+    @prop({ ref: "Exercise", default: [] })
     exercises?: Ref<Exercise>[]
 }
 
