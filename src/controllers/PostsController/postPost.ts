@@ -3,7 +3,7 @@ import {PostModel, Post} from '../../models/Posts';
 
 export  const POST_POST = async (req: Request ,res: Response) => {
     try{
-        const { /* user_name, */ question, tags, description, open, date/* , response */ } = req.body;
+        const { owner, type, question, tags, description, open, ownerData} = req.body;
         let createPost;
         
         if( !question || !description || !tags ) {
@@ -20,7 +20,7 @@ export  const POST_POST = async (req: Request ,res: Response) => {
             }
         }
         if( question && description && tags ){
-            createPost = { /* user_name, */ open, date, question, tags, description/* , response */ };
+            createPost = { owner, type, open, question, tags, description, ownerData };
             console.log("createPost: ", createPost)
             const postCreated = await PostModel.create(createPost);
 

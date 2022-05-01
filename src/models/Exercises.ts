@@ -5,7 +5,7 @@ import { Tags } from "./Posts";
 
 @modelOptions({options:{allowMixed:0}})
 export class Exercise{
-  @prop({ Ref: () => User, required: true }) //el id del user creador
+  @prop({ ref: () => User, required: true }) //el id del user creador
   owner: Ref<User>;
 
   @prop({ type: () => String, required: true})

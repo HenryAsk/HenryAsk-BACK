@@ -22,18 +22,25 @@ export enum Tags {
   PI = "PI",
   PG = "PG",
 }
+/**
+ * enum Type : this enum type has three options:
+ * PREP : content for users in Prer Course
+ * LEARNING : content for users in Bootcamp + Labs
+ * NEW :  content for users not inscribed yet in prepcourse
+**/
 export enum Type {
-  Prep,
-  Learning,
+  NEW, // input 0 in front-end requests
+  PREP, // input 1 in front-end requests
+  LEARNING // input 2 in front-end requests
 }
 
 @modelOptions({options:{allowMixed:0}})
 export class Post{
-  @prop({ Ref: () => User, /* required: true */ }) //el id del user creador
+  @prop({ Ref: () => User, required: true }) //el id del user creador
   owner: Ref<User>;
-
-  @prop({ /* required: true ,*/type: String, trim: true, lowercase: true })
-  email: string;
+  
+  @prop({type: () => [String], required: true})
+  ownerData: Array<String>
 
   @prop({ required: true, trim: true })
   question: string;
