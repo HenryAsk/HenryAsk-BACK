@@ -28,7 +28,13 @@ export const EDIT_USER = async (req: Request, res: Response) => {
             res.status(404).send('Ha ocurrido un error al editar el usuario.')
         }
         else {
-            const image = await uploadImg(profile_picture);
+            let image;
+            if(profile_picture !== ""){
+                image = await uploadImg(profile_picture);
+                image?.secure_url
+            } else {
+                image = "";
+            }
 
             const userEdited = await User.updateOne({ _id: id }, {
                 first_name: first_name && first_name,
@@ -43,7 +49,7 @@ export const EDIT_USER = async (req: Request, res: Response) => {
                 comments: comments && comments,
                 theorics: theorics && theorics,
                 exercises: exercises && exercises,
-                profile_picture: image.secure_url,
+                profile_picture: image,
                 biography: biography && biography,
                 github: github && github,
                 linkedin: linkedin && linkedin
