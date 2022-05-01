@@ -31,7 +31,7 @@ export const EDIT_USER = async (req: Request, res: Response) => {
             let image;
             if(profile_picture !== ""){
                 image = await uploadImg(profile_picture);
-                image?.secure_url
+                image = image.secure_url
             } else {
                 image = "";
             }
