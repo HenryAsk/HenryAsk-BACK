@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { uploadImg } from "../../cloudinary";
 const User = require('../../models/Users');
 
 export const EDIT_USER = async (req: Request, res: Response) => {
@@ -27,6 +28,8 @@ export const EDIT_USER = async (req: Request, res: Response) => {
             res.status(404).send('Ha ocurrido un error al editar el usuario.')
         }
         else {
+            const image = await uploadImg(profile_picture);
+
             const userEdited = await User.updateOne({ _id: id }, {
                 first_name: first_name && first_name,
                 last_name: last_name && last_name,
@@ -40,7 +43,7 @@ export const EDIT_USER = async (req: Request, res: Response) => {
                 comments: comments && comments,
                 theorics: theorics && theorics,
                 exercises: exercises && exercises,
-                profile_picture: profile_picture && profile_picture,
+                profile_picture: image.secure_url,
                 biography: biography && biography,
                 github: github && github,
                 linkedin: linkedin && linkedin
