@@ -50,6 +50,9 @@ export class User extends TimeStamps{
     @prop({ lowercase: true, default: "" })
     profile_picture?: string;
 
+    @prop({ lowercase: true, default: "" })
+    banner?: string;
+
     @prop({ maxlength: 300, default: "" })
     biography?: string;
 
@@ -69,13 +72,13 @@ export class User extends TimeStamps{
     give_henry_coin: number
 
     @prop({ ref: "Post", default: [] })
-    posts: Ref<Post>
+    posts?: Ref<Post>[]
 
     @prop({ ref: "Answer", default: [] })
-    answers: Ref<Answer>
+    answers?: Ref<Answer>[]
 
     @prop({ ref: "Comment", default: [] })
-    comments?: Ref<Comment>
+    comments?: Ref<Comment>[]
 
     @prop({ ref: "Theoric", default: [] })
     theorics?: Ref<Theoric>[]
