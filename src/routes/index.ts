@@ -1,17 +1,24 @@
-import { Router } from 'express';
+import { Router } from "express";
 const router = Router();
 
- 
-// Import routers
-// import userRoute from './userRoute';
+// Import routers below:
+import exerciseRouter from './exerciseRoute';
+import theoricRouter from './theoricRoute';
+import commentRouter from './commentRoute';
+import answerRouter from './answerRoute';
+import postRouter from './postRoutes';
+import userRouter from './userRoute';
 
-router.get('/', (req, res) => {
-    console.log('Hola maquinola')
-    res.send('Acá taaaaaaaaa')
-})
+//Config routers below:
+router.use('/exercise', exerciseRouter);
+router.use('/comment', commentRouter);
+router.use('/theoric', theoricRouter);
+router.use('/answer', answerRouter);
+router.use('/post', postRouter);
+router.use('/user', userRouter);
 
-//Config routers
-router.use('/user', router);
+export = router;
 
 
-module.exports = router;
+
+
