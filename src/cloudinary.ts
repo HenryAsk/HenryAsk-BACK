@@ -18,3 +18,10 @@ export const uploadImg = async (filePath: string) => {
         folder: 'profile_pictures'
     });
 };
+
+export const uploadBanner = async (filePath: string) => {
+    return await cloudinary.uploader.upload(filePath, {
+        folder: 'profile_banners'
+    });
+};
+
