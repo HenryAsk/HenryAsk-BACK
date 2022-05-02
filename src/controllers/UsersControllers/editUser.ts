@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { uploadImg } from "../../cloudinary";
+import { uploadImg, uploadBanner } from "../../cloudinary";
 const User = require('../../models/Users');
 
 export const EDIT_USER = async (req: Request, res: Response) => {
@@ -19,6 +19,7 @@ export const EDIT_USER = async (req: Request, res: Response) => {
             theorics,
             exercises,
             profile_picture,
+            banner,
             biography,
             github,
             linkedin
@@ -29,11 +30,20 @@ export const EDIT_USER = async (req: Request, res: Response) => {
         }
         else {
             let image;
+            let ban;
+
             if(profile_picture !== ""){
                 image = await uploadImg(profile_picture);
                 image = image.secure_url
             } else {
                 image = "";
+            }
+            if(banner !== ""){
+                ban = await uploadBanner(banner);
+                ban = ban.secure_url;
+            }
+            else{
+                ban = "";
             }
 
             const userEdited = await User.updateOne({ _id: id }, {
@@ -50,6 +60,7 @@ export const EDIT_USER = async (req: Request, res: Response) => {
                 theorics: theorics && theorics,
                 exercises: exercises && exercises,
                 profile_picture: image,
+                banner: ban,
                 biography: biography && biography,
                 github: github && github,
                 linkedin: linkedin && linkedin

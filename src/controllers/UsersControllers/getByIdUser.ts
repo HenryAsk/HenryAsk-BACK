@@ -24,6 +24,7 @@ export const GET_USER_BY_ID = async (req: Request, res: Response) => {
           country: userById.country,
           city: userById.city,
           profile_picture: userById.profile_picture,
+          banner: userById.banner,
           biography: userById.biography,
           github: userById.github,
           linkedin: userById.linkedin,

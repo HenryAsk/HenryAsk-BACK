@@ -30,6 +30,7 @@ export const GET_USER_BY_MAIL = async (
           country: userByMail.country,
           city: userByMail.city,
           profile_picture: userByMail.profile_picture,
+          banner: userByMail.banner,
           biography: userByMail.biography,
           github: userByMail.github,
           linkedin: userByMail.linkedin,
