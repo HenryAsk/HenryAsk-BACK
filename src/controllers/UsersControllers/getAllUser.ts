@@ -4,11 +4,6 @@ const Users = require('../../models/Users');
 export const GET_ALL_USER = async (_req: Request, res: Response) => {
     try{
         let allUsers = await Users.find({})
-        .populate("posts","_id")
-        .populate("answers","_id")
-        .populate("comments","_id")
-        .populate("theorics","_id")
-        .populate("exercises","_id");
 
         if(allUsers){
             allUsers = allUsers.map((el: any) => {
