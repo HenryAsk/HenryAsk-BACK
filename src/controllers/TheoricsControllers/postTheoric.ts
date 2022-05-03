@@ -14,7 +14,7 @@ export const POST_THEORIC = async (req: Request, res: Response) => {
       throw new Error("El título, contenido, autor y owner son requisitos necesarios para psotear contenido teorico.");
     }
     if (title) {
-      const alreadyExists: Theoric = await TheoricModel.findOne({
+      const alreadyExists = await TheoricModel.findOne({
         $or:[
           { title: title },
           { content: content }
@@ -32,8 +32,8 @@ export const POST_THEORIC = async (req: Request, res: Response) => {
       title,
       content,
       author,
-      images: images && images,
-      comments: comments && comments
+      images: images?.length && images,
+      comments: comments?.length && comments
     });
     res.json(`Material guardado exitosamente: ${theoricCreated}`);
 

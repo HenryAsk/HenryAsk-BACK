@@ -1,10 +1,5 @@
 import { prop, getModelForClass, Ref, modelOptions } from '@typegoose/typegoose';
 import { TimeStamps } from '@typegoose/typegoose/lib/defaultClasses';
-import { Comment } from './Comments';
-import { Exercise } from './Exercises';
-import { Theoric } from './Theorics';
-import { Answer } from './Answers';
-import { Post } from './Posts';
 
 /**
  * Enum Roles:
@@ -70,21 +65,6 @@ export class User extends TimeStamps{
     
     @prop({ type: () => Number, default: 0 })
     give_henry_coin: number
-
-    @prop({ ref: "Post", default: [] })
-    posts?: Ref<Post>[]
-
-    @prop({ ref: "Answer", default: [] })
-    answers?: Ref<Answer>[]
-
-    @prop({ ref: "Comment", default: [] })
-    comments?: Ref<Comment>[]
-
-    @prop({ ref: "Theoric", default: [] })
-    theorics?: Ref<Theoric>[]
-
-    @prop({ ref: "Exercise", default: [] })
-    exercises?: Ref<Exercise>[]
 }
 
 export const UserModel = getModelForClass(User);

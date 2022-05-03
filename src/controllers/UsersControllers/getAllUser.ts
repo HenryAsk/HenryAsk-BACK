@@ -27,11 +27,6 @@ export const GET_ALL_USER = async (_req: Request, res: Response) => {
                     linkedin: el.linkedin,
                     own_henry_coin: el.own_henry_coin,
                     give_henry_coin: el.give_henry_coin,
-                    posts:el.posts,
-                    answers: el.answers,
-                    comments: el.comments,
-                    theorics: el.theorics,
-                    exercises: el.exercises
                 })
             });
 

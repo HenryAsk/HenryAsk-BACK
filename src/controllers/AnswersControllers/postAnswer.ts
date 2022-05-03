@@ -3,9 +3,9 @@ import { AnswerModel } from "../../models/Answers";
 
 export const POST_ANSWER = async (req: Request, res: Response) => {
   try {
-    const { owner, content, posts } = req.body;
+    const { owner, content, post } = req.body;
 
-    if (owner || content || posts) {
+    if (owner || content || post) {
       const answerRepeat = await AnswerModel.findOne({
         $and: [{ content: content }, { owner: owner }],
       });
@@ -15,7 +15,7 @@ export const POST_ANSWER = async (req: Request, res: Response) => {
         const createAnswer = await AnswerModel.create({
           owner,
           content,
-          posts,
+          post,
         });
         res.status(200).json(`Respuesta creada: ${createAnswer}`);
       }
