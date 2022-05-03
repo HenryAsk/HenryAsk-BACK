@@ -19,6 +19,13 @@ enum Roles{
     FIVE
 }
 
+enum Avatars{
+    one='https://res.cloudinary.com/henryask/image/upload/v1651459729/avatares/unicorn_ntmtyp.png',
+    two='https://res.cloudinary.com/henryask/image/upload/v1651459728/avatares/pig_tzhrjl.png',
+    three='https://res.cloudinary.com/henryask/image/upload/v1651459728/avatares/pigeon_yfv9ka.png',
+}
+
+
 @modelOptions({ options: { allowMixed: 0 } })
 export class User extends TimeStamps{
     @prop({ required: false, trim: true, default: "" })
@@ -39,7 +46,7 @@ export class User extends TimeStamps{
     @prop({ type: () => String, default: "" })
     city?: string;
 
-    @prop({ required: false, default: "" })
+    @prop({ unique: true, required: false, default: "" })
     user_name: string;
 
     @prop({ lowercase: true, default: "" })
@@ -47,6 +54,9 @@ export class User extends TimeStamps{
 
     @prop({ lowercase: true, default: "" })
     banner?: string;
+
+    @prop({ enum: Avatars, addNullToEnum: false, default: ""})
+    avatar?: Avatars;
 
     @prop({ maxlength: 300, default: "" })
     biography?: string;
