@@ -34,7 +34,7 @@ export const GET_EXERCISES_BY_WORD =async (req: Request, res: Response, next: Ne
               {code: {$regex: `${word}`, $options: "i"}}
             ]
         }).populate("owner", 
-        "_id profile_picture role user_name" 
+        "_id profile_picture role user_name avatar" 
         );
           if(searchedExercisesByWord.length){
   

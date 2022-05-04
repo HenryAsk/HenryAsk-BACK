@@ -31,7 +31,7 @@ export const GET_EXERCISES_BY_ID =async (req: Request, res: Response, next: Next
           createdAt:1,
           updatedAt:1,
         }).populate("owner", 
-        "_id profile_picture role user_name" 
+        "_id profile_picture role user_name avatar" 
         );
         if(searchedExerciseById){
           res.status(200).json(searchedExerciseById);

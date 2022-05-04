@@ -16,7 +16,7 @@ export const GET_ALL_THEORICS = async (
     try {
       let theoricFounded = await TheoricModel.find({}).populate(
         "owner",
-        "_id user_name profile_picture role"
+        "_id user_name profile_picture role avatar"
       );
 
       if (!theoricFounded.length) {
