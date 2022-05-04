@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 const User = require("../../models/Users");
 
 export const GET_USER_BY_MAIL = async ( req: Request, res: Response, next: NextFunction ) => {
-  if(req.query.user_name) next();
+  if(req.query.user_name || req.params.id) next();
 
   else{
     try {
