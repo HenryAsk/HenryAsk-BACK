@@ -1,4 +1,10 @@
 import { Request, Response } from "express";
+import { AnswerModel } from "../../models/Answers";
+import { CommentModel } from "../../models/Comments";
+import { ExerciseModel } from "../../models/Exercises";
+import { PostModel } from "../../models/Posts";
+import { TheoricModel } from "../../models/Theorics";
+
 const User = require("../../models/Users");
 
 export const GET_USER_BY_ID = async (req: Request, res: Response) => {
@@ -7,11 +13,6 @@ export const GET_USER_BY_ID = async (req: Request, res: Response) => {
 
     if (id) {
       let userById = await User.findOne({ _id: id })
-      .populate("posts","_id")
-      .populate("answers","_id")
-      .populate("comments","_id")
-      .populate("theorics","_id")
-      .populate("exercises","_id")
 
       if (userById) {
         userById = {
@@ -25,18 +26,27 @@ export const GET_USER_BY_ID = async (req: Request, res: Response) => {
           city: userById.city,
           profile_picture: userById.profile_picture,
           banner: userById.banner,
+          avatar: userById.avatar,
           biography: userById.biography,
           github: userById.github,
           linkedin: userById.linkedin,
           own_henry_coin: userById.own_henry_coin,
           give_henry_coin: userById.give_henry_coin,
-          posts: userById.posts,
-          answers: userById.answers,
-          comments: userById.comments,
-          theorics: userById.theorics,
-          exercises: userById.exercises,
         };
+          const userPosts = await PostModel.find({owner: id});
+          const userAnswers = await AnswerModel.find({owner: id});
+          const userComments = await CommentModel.find({owner: id});
+          const userTheorics = await TheoricModel.find({owner: id});
+          const userExercises = await ExerciseModel.find({owner: id});
         
+          userById={
+            ...userById,
+            posts: userPosts,
+            answers: userAnswers,
+            comments: userComments,
+            theorics: userTheorics,
+            exercises: userExercises,
+          }
         res.status(200).json(userById);
       } else {
         res.status(404).send("No se encontró el usuario requerido.");

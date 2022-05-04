@@ -25,8 +25,8 @@ export const EDIT_THEORIC = async (req: Request, res: Response) => {
       title: title && title,
       content: content && content,
       author: author && author,
-      images: images && images,
-      comments: comments && comments,
+      images: images?.length && images,
+      comments: comments?.length && comments,
     })
     res.json(`${theoricEdited.matchedCount} document has been matched and ${theoricEdited.modifiedCount} document has been modified `);
 

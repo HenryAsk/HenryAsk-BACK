@@ -61,8 +61,8 @@ export class Post extends TimeStamps {
   @prop({ type: Boolean, required: true, default: true })
   open!: boolean;
 
-  @prop({ ref: "Answer", type: () => [String], default: [] }, PropType.ARRAY)
-  answers?: Ref<Answer>[];
+  @prop({ type: () => [Answer], default: [] }, PropType.ARRAY)
+  answers?: Answer[];
 }
 
 export const PostModel = getModelForClass(Post);

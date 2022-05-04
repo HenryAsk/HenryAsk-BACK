@@ -1,10 +1,5 @@
 import { prop, getModelForClass, Ref, modelOptions } from '@typegoose/typegoose';
 import { TimeStamps } from '@typegoose/typegoose/lib/defaultClasses';
-import { Comment } from './Comments';
-import { Exercise } from './Exercises';
-import { Theoric } from './Theorics';
-import { Answer } from './Answers';
-import { Post } from './Posts';
 
 /**
  * Enum Roles:
@@ -23,6 +18,13 @@ enum Roles{
     FOUR,
     FIVE
 }
+
+enum Avatars{
+    one='https://res.cloudinary.com/henryask/image/upload/v1651459729/avatares/unicorn_ntmtyp.png',
+    two='https://res.cloudinary.com/henryask/image/upload/v1651459728/avatares/pig_tzhrjl.png',
+    three='https://res.cloudinary.com/henryask/image/upload/v1651459728/avatares/pigeon_yfv9ka.png',
+}
+
 
 @modelOptions({ options: { allowMixed: 0 } })
 export class User extends TimeStamps{
@@ -44,7 +46,7 @@ export class User extends TimeStamps{
     @prop({ type: () => String, default: "" })
     city?: string;
 
-    @prop({ required: false, default: "" })
+    @prop({ unique: true, required: false, default: "" })
     user_name: string;
 
     @prop({ lowercase: true, default: "" })
@@ -52,6 +54,9 @@ export class User extends TimeStamps{
 
     @prop({ lowercase: true, default: "" })
     banner?: string;
+
+    @prop({ enum: Avatars, addNullToEnum: false, default: ""})
+    avatar?: Avatars;
 
     @prop({ maxlength: 300, default: "" })
     biography?: string;
@@ -70,21 +75,6 @@ export class User extends TimeStamps{
     
     @prop({ type: () => Number, default: 0 })
     give_henry_coin: number
-
-    @prop({ ref: "Post", default: [] })
-    posts?: Ref<Post>[]
-
-    @prop({ ref: "Answer", default: [] })
-    answers?: Ref<Answer>[]
-
-    @prop({ ref: "Comment", default: [] })
-    comments?: Ref<Comment>[]
-
-    @prop({ ref: "Theoric", default: [] })
-    theorics?: Ref<Theoric>[]
-
-    @prop({ ref: "Exercise", default: [] })
-    exercises?: Ref<Exercise>[]
 }
 
 export const UserModel = getModelForClass(User);
