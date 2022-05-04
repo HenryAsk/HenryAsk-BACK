@@ -10,6 +10,7 @@ import { Router } from 'express';
 
 const router = Router();
 
+//NO CAMBIAR EL ORDEN DE LAS RUTAS//
 router.put('/', EDIT_POST);
 router.post('/', POST_POST);
 router.get('/', GET_ALL_POST);

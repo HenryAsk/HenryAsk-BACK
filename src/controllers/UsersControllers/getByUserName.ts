@@ -6,7 +6,7 @@ export const GET_BY_USER_NAME = async (
   res: Response,
   next: NextFunction
 ) => {
-  if (req.query.email) next();
+  if (req.query.email || req.params.id) next();
   else {
     try {
       const { user_name } = req.query;
@@ -15,7 +15,6 @@ export const GET_BY_USER_NAME = async (
 
       if (user_name) {
         let userByName = await User.findOne({ user_name: user_name });
-        console.log(userByName);
         userByName = {
           _id: userByName._id,
           first_name: userByName.first_name,
