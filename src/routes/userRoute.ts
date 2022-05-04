@@ -9,8 +9,8 @@ import { GET_BY_USER_NAME } from "../controllers/UsersControllers/getByUserName"
 const router = Router();
 
 //NO CAMBIAR EL ORDEN: PRIMERO LAS DINÁMICAS//
-router.get('/', GET_BY_USER_NAME);
 router.get('/', GET_USER_BY_MAIL);
+router.get('/', GET_BY_USER_NAME);
 router.get('/', GET_ALL_USER);
 router.get('/:id', GET_USER_BY_ID);
 router.put('/', EDIT_USER );
