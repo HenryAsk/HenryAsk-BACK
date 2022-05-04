@@ -17,6 +17,7 @@ export const GET_ALL_USER = async (_req: Request, res: Response) => {
                     city: el.city,
                     profile_picture: el.profile_picture,
                     banner: el.banner,
+                    avatar: el.avatar,
                     biography: el.biography,
                     github: el.github,
                     linkedin: el.linkedin,

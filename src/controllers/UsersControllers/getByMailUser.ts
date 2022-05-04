@@ -25,6 +25,7 @@ export const GET_USER_BY_MAIL = async ( req: Request, res: Response, next: NextF
             city: userByMail.city,
             profile_picture: userByMail.profile_picture,
             banner: userByMail.banner,
+            avatar: userByMail.avatar,
             biography: userByMail.biography,
             github: userByMail.github,
             linkedin: userByMail.linkedin,
