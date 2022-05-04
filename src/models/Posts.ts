@@ -34,35 +34,35 @@ export enum Tags {
  * PREP : content for users in Prer Course
  * LEARNING : content for users in Bootcamp + Labs
  * NEW :  content for users not inscribed yet in prepcourse
-**/
+ **/
 export enum Type {
   NEW, // input 0 in front-end requests
   PREP, // input 1 in front-end requests
-  LEARNING // input 2 in front-end requests
+  LEARNING, // input 2 in front-end requests
 }
 
-@modelOptions({options:{allowMixed:0}})
-export class Post extends TimeStamps{
-  @prop({ ref: "User", required: true, trim:true})
+@modelOptions({ options: { allowMixed: 0 } })
+export class Post extends TimeStamps {
+  @prop({ ref: "User", required: true, trim: true })
   owner!: Ref<User>;
-  
-  @prop({ enum: Type, required:true })
+
+  @prop({ enum: Type, required: true })
   type!: Type;
 
   @prop({ enum: Tags, type: () => [String], required: true }, PropType.ARRAY)
   tags!: Array<Tags>;
 
-  @prop({ maxlength: 1500, required: true, trim:true})
+  @prop({ maxlength: 1500, required: true, trim: true })
   question!: string;
 
-  @prop({ maxlength: 1500, required: true, trim:true})
+  @prop({ maxlength: 1500, required: true, trim: true })
   description!: string;
 
-  @prop({ type: Boolean , required: true, default: true })
+  @prop({ type: Boolean, required: true, default: true })
   open!: boolean;
 
-  @prop({ ref: "Answer", type: () => [String] }, PropType.ARRAY)
-  answers?: Array<Answer>;
+  @prop({ ref: "Answer", type: () => [String], default: [] }, PropType.ARRAY)
+  answers?: Ref<Answer>[];
 }
 
 export const PostModel = getModelForClass(Post);
