@@ -1,13 +1,13 @@
 import { NextFunction, Request, Response } from "express";
-import { PostModel, Post } from "../../models/Posts";
-import { Answer } from "../../models/Answers";
+import { PostModel } from "../../models/Posts";
 
 export const EDIT_POST = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
-  if (req.body.open === null) next();
+  console.log(req.body.open);
+  if (req.body.open !== null) next();
   else {
     try {
       const { id, description, question, tags } = req.body;

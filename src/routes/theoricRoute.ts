@@ -7,6 +7,8 @@ import { POST_THEORIC } from "../controllers/TheoricsControllers/postTheoric";
 import { Router } from "express";
 
 const router = Router();
+
+//NO CAMBIAR EL ORDEN DE LAS RUTAS//
 router.put('/', EDIT_THEORIC);
 router.post('/', POST_THEORIC);
 router.get('/', GET_ALL_THEORICS);
