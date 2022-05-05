@@ -27,7 +27,7 @@ export const GET_ALL_EXERCISES = async (req: Request, res: Response, next: NextF
         createdAt:1,
         updatedAt:1,
         }).populate("owner", 
-          "_id profile_picture role user_name" 
+          "_id profile_picture role user_name avatar" 
       );
 
       if(allExercises.length){

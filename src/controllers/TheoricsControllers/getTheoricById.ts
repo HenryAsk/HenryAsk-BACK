@@ -12,7 +12,7 @@ export const GET_THEORIC_BY_ID = async (req: Request, res: Response, next: NextF
     try {
       const { id } = req.params;
       let theoricFounded = await TheoricModel.findById({ _id: id })
-      .populate("owner","_id user_name profile_picture role");
+      .populate("owner","_id user_name profile_picture role avatar");
       if (!theoricFounded) {
 
         throw new Error("No se ha encontrado ningún contenido teórico con el id ingresado.");

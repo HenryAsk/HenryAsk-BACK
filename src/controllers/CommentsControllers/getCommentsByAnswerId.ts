@@ -27,7 +27,7 @@ export const GET_COMMENTS_BY_ANSWER_ID =async (req: Request, res: Response ) => 
         answer:1,
       }).populate("answer","_id")
       .populate("owner", 
-      "profile_picture user_name" 
+      "profile_picture user_name avatar" 
       );
       if(searchedCommentByAnswerId){
         res.status(200).json(searchedCommentByAnswerId);
