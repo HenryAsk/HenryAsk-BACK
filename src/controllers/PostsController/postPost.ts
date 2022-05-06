@@ -32,7 +32,7 @@ export const POST_POST = async (req: Request, res: Response) => {
 
         if (postCreated) {
 
-          return res.status(200).json(createPost);
+          return res.status(200).json(postCreated);
 
         } else {
 
