@@ -8,6 +8,7 @@ import { Router } from 'express';
 
 const router = Router();
 
+//NO CAMBIAR EL ORDEN DE LAS RUTAS//
 router.put('/', EDIT_EXERCISE);
 router.post('/', CREATE_EXERCISE);
 router.get('/', GET_ALL_EXERCISES);

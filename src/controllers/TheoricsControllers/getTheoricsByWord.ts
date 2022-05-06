@@ -17,7 +17,7 @@ export const GET_THEORICS_BY_WORD = async (req: Request, res: Response, next: Ne
           { author: { $regex: `${word}`, $options: "i" } },
           { content: { $regex: `${word}`, $options: "i" } },
         ]
-      }).populate("owner","_id user_name profile_picture role");
+      }).populate("owner","_id user_name profile_picture role avatar");
 
       if (!theoricFounded.length) {
 

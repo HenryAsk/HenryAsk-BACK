@@ -1,4 +1,5 @@
 import { Response, Request, NextFunction } from "express";
+import { AnswerModel } from "../../models/Answers";
 import { Post, PostModel } from '../../models/Posts';
 
 export const GET_POST_BY_ID = async (req: Request, res: Response, next: NextFunction) => {
@@ -13,11 +14,15 @@ export const GET_POST_BY_ID = async (req: Request, res: Response, next: NextFunc
     
             if (id) {
                 searchedPostObject = await PostModel.findById(id)
-                .populate("owner","_id user_name profile_picture role")
-                /* .populate("answer", "_id") */;
+                .populate("owner","_id user_name profile_picture role avatar");
     
                 if (searchedPostObject) {
     
+                    const postAnswers = await AnswerModel.find({ post: id })
+                    .populate("owner", "profile_picture user_name ");
+                    console.log(postAnswers)
+                    searchedPostObject.answers = postAnswers;
+
                     res.status(200).json(searchedPostObject);
     
                 } else {

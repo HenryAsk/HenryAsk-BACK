@@ -1,4 +1,4 @@
-const { getModelForClass, prop } = require("@typegoose/typegoose");
+import { getModelForClass, prop } from "@typegoose/typegoose";
 import { modelOptions, Ref } from "@typegoose/typegoose";
 import { TimeStamps } from "@typegoose/typegoose/lib/defaultClasses";
 import { User } from "./Users";

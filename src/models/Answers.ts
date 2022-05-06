@@ -3,8 +3,10 @@ import {
   prop,
   Ref,
   modelOptions,
+  PropType,
 } from "@typegoose/typegoose";
 import { TimeStamps } from "@typegoose/typegoose/lib/defaultClasses";
+import { Comment } from "./Comments";
 import { Post } from "./Posts";
 import { User } from "./Users";
 
@@ -17,7 +19,10 @@ export class Answer extends TimeStamps {
   content!: string;
 
   @prop({ ref: "Post", required: true, trim: true })
-  posts!: Ref<Post>;
+  post!: Ref<Post>;
+
+  @prop({ type: () => [Comment], default: []}, PropType.ARRAY)
+  comments?: Comment[];
 }
 
 export const AnswerModel = getModelForClass(Answer);

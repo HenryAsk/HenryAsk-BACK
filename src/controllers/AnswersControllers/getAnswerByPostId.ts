@@ -3,7 +3,7 @@ import { AnswerModel, Answer } from "../../models/Answers";
 
 export const GET_ANSWER_BY_POST_ID = async (req: Request, res: Response, next: NextFunction) => {
 
-    if (req.query.id) next();
+    if (req.params.id) next();
     else {
         try {
             const { postId } = req.query;
@@ -13,8 +13,7 @@ export const GET_ANSWER_BY_POST_ID = async (req: Request, res: Response, next: N
             }
             else {
                 let getAnswer: any | Array<Answer> = await AnswerModel.find({ post: postId })
-                    .populate("post", "_id")
-                    .populate("owner", "profile_picture user_name ");
+                    .populate("owner", "profile_picture user_name avatar");
 
                 if (getAnswer) {
 

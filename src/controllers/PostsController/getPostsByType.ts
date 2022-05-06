@@ -14,7 +14,7 @@ export const GET_POST_BY_TYPE = async (req: Request, res: Response, next: NextFu
             if (type) {
     
                 searchedPostArray = await PostModel.find({ type: type })
-                .populate("owner","_id user_name profile_picture role")
+                .populate("owner","_id user_name profile_picture role avatar")
                 /* .populate("answer", "_id") */;
     
                 if (searchedPostArray.length) {
