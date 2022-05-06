@@ -20,8 +20,7 @@ export const GET_POST_BY_WORD = async (req: Request, res: Response, next: NextFu
             { tags: { $regex: `${word}`, $options: "i" } },
             { description: { $regex: `${word}`, $options: "i" } },
           ]
-        }).populate("owner","_id user_name profile_picture role avatar")
-        /* .populate("answer", "_id") */;
+        }).populate("owner","_id user_name profile_picture role avatar");
 
         if (searchedPostArray.length) {
   
