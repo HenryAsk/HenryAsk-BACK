@@ -17,7 +17,7 @@ export const POST_ANSWER = async (req: Request, res: Response) => {
           content,
           post,
         });
-        res.status(200).json(`Respuesta creada: ${createAnswer}`);
+        res.status(200).json(createAnswer);
       }
     }
   } catch (err: any | unknown) {

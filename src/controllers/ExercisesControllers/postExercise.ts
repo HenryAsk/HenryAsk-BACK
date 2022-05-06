@@ -26,7 +26,7 @@ export const CREATE_EXERCISE = async (req: Request, res: Response ) => {
         test
       });
         if(exerciseCreated){ 
-          res.status(200).json(`The exercise has been created succesfully: ${exerciseCreated}`);
+          res.status(200).json(exerciseCreated);
         }
         else throw new Error("The exercise hasn't been created, please check the inputs.");
       

@@ -32,7 +32,7 @@ export const POST_THEORIC = async (req: Request, res: Response) => {
       images: images?.length && images,
       comments: comments?.length && comments,
     });
-    res.json(theoricCreated);
+    res.status(200).json(theoricCreated);
   } catch (err: string | any) {
     res
       .status(400)

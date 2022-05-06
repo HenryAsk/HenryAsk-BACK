@@ -33,7 +33,7 @@ export const CREATE_COMMENT = async (req: Request, res: Response ) => {
           content 
       });
         if(commentCreated){ 
-          res.status(200).json(`The comment has been created succesfully: ${commentCreated}`);
+          res.status(200).json(commentCreated);
         }
         else throw new Error("The comment hasn't been created, please check the inputs.");
       }
