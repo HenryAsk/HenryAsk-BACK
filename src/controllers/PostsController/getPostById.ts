@@ -14,7 +14,8 @@ export const GET_POST_BY_ID = async (req: Request, res: Response, next: NextFunc
     
             if (id) {
                 searchedPostObject = await PostModel.findById(id)
-                .populate("owner","_id user_name profile_picture role avatar");
+                .populate("owner","_id user_name profile_picture role avatar")
+                .populate("bestAnswer","_id owner content ");
     
                 if (searchedPostObject) {
     

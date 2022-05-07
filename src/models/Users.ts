@@ -23,6 +23,12 @@ enum Avatars{
     one='https://res.cloudinary.com/henryask/image/upload/v1651459729/avatares/unicorn_ntmtyp.png',
     two='https://res.cloudinary.com/henryask/image/upload/v1651459728/avatares/pig_tzhrjl.png',
     three='https://res.cloudinary.com/henryask/image/upload/v1651459728/avatares/pigeon_yfv9ka.png',
+    four='https://res.cloudinary.com/henryask/image/upload/v1651879289/avatares/secret_wqhn3g.png',
+    five='https://res.cloudinary.com/henryask/image/upload/v1651879289/avatares/score_hghnpc.png',
+    six='https://res.cloudinary.com/henryask/image/upload/v1651879289/avatares/sandwich_s6vidk.png',
+    seven='https://res.cloudinary.com/henryask/image/upload/v1651879289/avatares/speedrun_t56kga.png',
+    eight='https://res.cloudinary.com/henryask/image/upload/v1651879289/avatares/ice_breaker_fyfsw4.png',
+    nine='https://res.cloudinary.com/henryask/image/upload/v1651879289/avatares/movie_k5yk2g.png'
 }
 
 

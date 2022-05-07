@@ -6,8 +6,10 @@ export const EDIT_POST = async (
   res: Response,
   next: NextFunction
 ) => {
-  console.log(req.body.open);
-  if (req.body.open !== null) next();
+
+  const { open, bestAnswer } = req.body;
+
+  if (open !== null || bestAnswer) next();
   else {
     try {
       const { id, description, question, tags } = req.body;

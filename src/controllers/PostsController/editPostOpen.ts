@@ -1,11 +1,11 @@
 import { NextFunction, Request, Response } from "express";
 import { PostModel} from '../../models/Posts';
 
-export const TOGGLE_OPEN_POST = async (req: Request, res: Response, next: NextFunction) => {
+export const EDIT_POST_OPEN = async (req: Request, res: Response, next: NextFunction) => {
   
-  const{ description, question, tags } = req.body;
+  const{ description, question, tags, bestAnswer } = req.body;
   
-  if( description || question || tags ) next()
+  if( description || question || tags || bestAnswer) next()
   else{
     try{
       const {id, open} = req.body;
@@ -24,5 +24,4 @@ export const TOGGLE_OPEN_POST = async (req: Request, res: Response, next: NextFu
       res.status(404).send(`Error en el controller TOGGLE_OPEN_POST: ${err.message}`);
   }
   }
-  
 };

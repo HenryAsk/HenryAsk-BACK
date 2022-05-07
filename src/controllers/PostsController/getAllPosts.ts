@@ -13,8 +13,7 @@ export const GET_ALL_POST =async (req: Request, res: Response, next: NextFunctio
             if( !word && !type && !id ) {
     
                 searchedPostArray = await PostModel.find({})
-                .populate("owner","_id user_name profile_picture role avatar")
-                /* .populate("answer", "_id") */;
+                .populate("owner","_id user_name profile_picture role avatar");
     
                 if(searchedPostArray.length){
     
