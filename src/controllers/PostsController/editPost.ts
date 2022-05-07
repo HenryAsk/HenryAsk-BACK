@@ -11,7 +11,6 @@ export const EDIT_POST = async (
   else {
     try {
       const { id, description, question, tags } = req.body;
-
       if (!id) {
         throw new Error("Especifique el id del post que quiere editar");
       }
