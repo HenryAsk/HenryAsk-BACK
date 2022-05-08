@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-const User = require("../../models/Users");
+const User = require('../../models/Users');
 
 export const GET_USER_BY_MAIL = async ( req: Request, res: Response, next: NextFunction ) => {
   if(req.query.user_name || req.params.id) next();
@@ -11,11 +11,19 @@ export const GET_USER_BY_MAIL = async ( req: Request, res: Response, next: NextF
       if (!email) next();
   
       if (email) {
-        let userByMail = await User.findOne({ email: email });
+        let userByMail = await User.findOneAndUpdate({
+          email: email
+        }, {
+          $setOnInsert: { hola: 'me cree'}
+        },
+        {
+          returnOriginal: false,
+          upsert:true
+        });
   
         if (userByMail) {
           userByMail = {
-            _id: userByMail._id,
+            _id : userByMail._id,
             first_name: userByMail.first_name,
             last_name: userByMail.last_name,
             user_name: userByMail.user_name,
