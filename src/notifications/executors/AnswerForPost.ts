@@ -1,7 +1,6 @@
 import { transportAnswerForPost } from "../transporters";
 import { AnswerForPostData } from "../notifications";
 import { PostModel } from "../../models/Posts";
-
 const User = require("../models/Users");
 
 const AnswerForPost = async (AnswerUser: string, PostId: string) => {
