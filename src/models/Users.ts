@@ -81,6 +81,9 @@ export class User extends TimeStamps{
     
     @prop({ type: () => Number, default: 0 })
     give_henry_coin: number
+
+    @prop({ type: () => Boolean, default: false})
+    isBanned: boolean
 }
 
 export const UserModel = getModelForClass(User);
