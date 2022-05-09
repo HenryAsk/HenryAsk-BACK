@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { AnswerModel } from "../../models/Answers";
 /*EL SIGUIENTE IMPORT ES PARA NOTIFICACIONES. NO BORRAR*/
-// import AnswerForPost from "../../notifications/executors/AnswerForPost";
+import AnswerForPost from "../../notifications/executors/AnswerForPost";
 
 export const POST_ANSWER = async (req: Request, res: Response) => {
   try {
@@ -22,7 +22,7 @@ export const POST_ANSWER = async (req: Request, res: Response) => {
         res.status(200).json(`Respuesta creada: ${createAnswer}`);
 
         /*LA SIGUIENTE FUNCIÓN ES PARA NOTIFICACIONES. NO BORRAR*/
-        // AnswerForPost(owner, post);
+        AnswerForPost(owner, post);
       }
     }
   } catch (err: any | unknown) {
