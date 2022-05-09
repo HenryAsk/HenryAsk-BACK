@@ -15,13 +15,13 @@ import { TheoricModel } from "../../models/Theorics";
 **/
 export const EDIT_THEORIC = async (req: Request, res: Response) => {
   try {
-    const { id, title, content, author, images, comments } = req.body;
+    const { _id, title, content, author, images, comments } = req.body;
 
-    if (!id) {
+    if (!_id) {
 
       throw new Error("Must be enter an id.")
     }
-    const theoricEdited = await TheoricModel.updateOne({ _id: id }, {
+    const theoricEdited = await TheoricModel.updateOne({ _id: _id }, {
       title: title && title,
       content: content && content,
       author: author && author,

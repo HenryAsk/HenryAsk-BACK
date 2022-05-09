@@ -11,7 +11,7 @@ import { ExerciseModel, Exercise } from '../../models/Exercises';
 **/
 export const GET_ALL_EXERCISES = async (req: Request, res: Response, next: NextFunction) => {
 
-  if(req.query.id || req.query.word) next();
+  if(req.params.id || req.query.word) next();
 
   else{
     try{
@@ -34,7 +34,7 @@ export const GET_ALL_EXERCISES = async (req: Request, res: Response, next: NextF
         /**
         *allExercisesMapped: use the map below to set the properties to send to the front
         **/
-        const allExercisesMapped = allExercises.map((el: Exercise) => {
+        /*const allExercisesMapped = allExercises.map((el: Exercise) => {
           return {
             owner: el.owner,
             title: el.title,
@@ -44,8 +44,8 @@ export const GET_ALL_EXERCISES = async (req: Request, res: Response, next: NextF
             test: el.test,
             //resolution: el.resolution,
           }
-        });
-        res.status(200).json(allExercisesMapped);
+        }); */
+        res.status(200).json(allExercises);
 
       } else {
         throw new Error("No exercises has been founded, please check this with our admins.");
