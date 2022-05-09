@@ -16,13 +16,13 @@ export const EDIT_EXERCISE = async (req: Request, res: Response) => {
 
   try {
 
-    const { id , title, tags, description, code, test } = req.body;
+    const { _id , title, tags, description, code, test } = req.body;
 
-    if (id) {
+    if (_id) {
       /**
       *exerciseEdited: if ExerciseModel update its attributes, add the new ones here.
       **/ 
-      const exerciseEdited = await ExerciseModel.updateOne({ _id: id }, {
+      const exerciseEdited = await ExerciseModel.updateOne({ _id: _id }, {
         title: title && title,
         tags: tags && tags,
         description: description && description,
