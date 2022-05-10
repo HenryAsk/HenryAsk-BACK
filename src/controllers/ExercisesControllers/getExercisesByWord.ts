@@ -14,7 +14,7 @@ import { ExerciseModel, Exercise } from "../../models/Exercises";
 **/
 export const GET_EXERCISES_BY_WORD =async (req: Request, res: Response, next: NextFunction ) => {
   
-  const {id} = req.query;
+  const {id} = req.params;
 
   if (id) next();
   else{

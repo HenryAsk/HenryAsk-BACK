@@ -15,8 +15,8 @@ export const GET_EXERCISES_BY_ID =async (req: Request, res: Response, next: Next
   if(word) next();
   else{
     try {
-      if(req.query.id){
-        const id = req.query.id;
+      const id = req.params.id;
+      if(id){
         /**
         * searchedExerciseById: Switch to zero the properties that don't need send to front-end
         **/
