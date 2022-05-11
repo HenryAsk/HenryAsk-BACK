@@ -28,19 +28,19 @@ export class Report extends TimeStamps{
     @prop({ type: () => String, default: "" })
     description: string
 
-    @prop({ enum: Status, addNullToEnum: false, default: "" })
+    @prop({ enum: Status, addNullToEnum: false, default: 'PENDING' })
     status: Status
 
-    @prop({ enum: Reason, addNullToEnum: false, default: "" })
+    @prop({ enum: Reason, addNullToEnum: false })
     reason: Reason
 
-    @prop({ ref: "Post", default: {} })
+    @prop({ ref: "Post" })
     post: Ref<Post>
 
-    @prop({ ref: "Answer", default: {} })
+    @prop({ ref: "Answer" })
     answer: Ref<Answer>
 
-    @prop({ ref: "Comment", default: {} })
+    @prop({ ref: "Comment" })
     comment: Ref<Comment>
 };
 
