@@ -9,7 +9,7 @@ export const EDIT_POST = async (
 
   const { open, bestAnswer } = req.body;
 
-  if (open !== null || bestAnswer) next();
+  if ( !open || bestAnswer) next();
   else {
     try {
       const { id, description, question, tags } = req.body;
@@ -34,7 +34,7 @@ export const EDIT_POST = async (
         );
       }
     } catch (err: string | any) {
-      res.status(404).send(`Error en el controller EDIT_POST: ${err.message}`);
+      res.status(400).send(`Error en el controller EDIT_POST: ${err.message}`);
     }
   }
 };
