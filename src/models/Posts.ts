@@ -61,7 +61,7 @@ export class Post extends TimeStamps {
   @prop({ type: Boolean, required: true, default: true })
   open!: boolean;
 
-  @prop({ ref: "Answer", required: false, default: {} })
+  @prop({ ref: "Answer", required: false })
   bestAnswer?: Ref<Answer>;
 
   @prop({ type: () => [Answer], default: [] }, PropType.ARRAY)

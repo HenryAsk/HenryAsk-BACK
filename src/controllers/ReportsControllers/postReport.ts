@@ -3,7 +3,14 @@ import { ReportModel, Report } from "../../models/Reports";
 
 export const CREATE_REPORT = async(req: Request, res: Response) => {
     try{
-        const { owner, description, post, answer, comment } = req.body;
+        const { 
+            owner, 
+            description, 
+            post, 
+            answer, 
+            comment, 
+            status, 
+            reason } = req.body;
 
         if(owner && description){
             if(post || answer || comment){
@@ -12,7 +19,9 @@ export const CREATE_REPORT = async(req: Request, res: Response) => {
                     description,
                     post,
                     answer,
-                    comment
+                    comment,
+                    status,
+                    reason
                 });
 
                 res.status(200).json(reportCreated);

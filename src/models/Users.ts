@@ -16,7 +16,11 @@ enum Roles{
     TWO,
     THREE,
     FOUR,
-    FIVE
+    FIVE,
+    SIX,
+    SEVEN,
+    EIGHT,
+    NINE
 }
 
 enum Avatars{
