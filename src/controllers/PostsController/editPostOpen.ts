@@ -17,7 +17,6 @@ export const EDIT_POST_OPEN = async (req: Request, res: Response, next: NextFunc
       const oldPost = await PostModel.updateOne({ _id: id },{
         open: open
       });
-      console.log("oldPost:", oldPost)
       res.json(`${oldPost.modifiedCount} post ${open? "abierto":"cerrado"} correctamente.`);     
 
   } catch(err: string | any){
