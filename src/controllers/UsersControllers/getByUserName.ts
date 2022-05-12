@@ -32,6 +32,7 @@ export const GET_BY_USER_NAME = async (
           linkedin: userByName.linkedin,
           own_henry_coin: userByName.own_henry_coin,
           give_henry_coin: userByName.give_henry_coin,
+          isBanned: userByName.isBanned
         };
 
         res.status(200).json(userByName);
