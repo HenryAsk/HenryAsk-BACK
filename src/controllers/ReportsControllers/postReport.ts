@@ -15,11 +15,11 @@ export const CREATE_REPORT = async(req: Request, res: Response) => {
         if(owner && description){
             if(post || answer || comment){
                 const reportCreated: Report = await ReportModel.create({
-                    owner,
+                    owner: owner && owner._id,
                     description,
-                    post,
-                    answer,
-                    comment,
+                    post: post && post._id,
+                    answer: answer && answer._id,
+                    comment: comment && comment._id,
                     status,
                     reason
                 });
