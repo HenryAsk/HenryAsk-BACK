@@ -1,4 +1,4 @@
-import { transportAnswerForPost } from "../transporters";
+import { transportator } from "../transporters";
 import { AnswerForPostData } from "../notifications";
 import { PostModel } from "../../models/Posts";
 const User = require("../../models/Users");
@@ -18,7 +18,7 @@ const AnswerForPost = async (AnswerUser: string, PostId: string) => {
 
     const EmailTo = DataOfUserPost.email;
 
-    transportAnswerForPost(AnswerForPostData(EmailTo, AnswerUserFullName));
+    transportator(AnswerForPostData(EmailTo, AnswerUserFullName));
   } catch (err) {
     console.log(err);
   }
