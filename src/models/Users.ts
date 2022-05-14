@@ -36,7 +36,7 @@ enum Avatars{
 }
 
 
-@modelOptions({ options: { allowMixed: 0 } })
+// @modelOptions({ options: { allowMixed: 0 } })
 export class User extends TimeStamps{
     @prop({ required: false, trim: true, default: "" })
     first_name: string;
@@ -88,6 +88,9 @@ export class User extends TimeStamps{
 
     @prop({ type: () => Boolean, default: false})
     isBanned: boolean
+
+    @prop({ type: () => Date })
+    createdAt?: Date | undefined;
 }
 
 export const UserModel = getModelForClass(User);

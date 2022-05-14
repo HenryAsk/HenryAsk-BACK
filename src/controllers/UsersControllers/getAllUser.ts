@@ -26,7 +26,8 @@ export const GET_ALL_USER = async (req: Request, res: Response, next: NextFuncti
                         linkedin: el.linkedin,
                         own_henry_coin: el.own_henry_coin,
                         give_henry_coin: el.give_henry_coin,
-                        isBanned: el.isBanned
+                        isBanned: el.isBanned,
+                        createdAt: el.createdAt
                     })
                 });
     
