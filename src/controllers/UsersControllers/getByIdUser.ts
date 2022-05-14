@@ -12,9 +12,7 @@ export const GET_USER_BY_ID = async (req: Request, res: Response) => {
     const { id } = req.params;
 
     if (id) {
-      let userById = await User.findOne({ _id: id })
-      console.log(userById.createdAt)
-
+      let userById = await User.findOne({ _id: id });
 
       if (userById) {
         userById = {

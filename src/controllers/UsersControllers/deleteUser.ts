@@ -18,8 +18,8 @@ export const DELETE_USER = async (req: Request, res: Response) => {
         } else{
             throw new Error("Ingrese un id del usuario que desea borrar.")
         }
-        } catch (err: any | unknown) {
+    } catch (err: any | unknown) {
 
-            res.status(404).send(`Ha ocurrido un error en el controlador DELETE_USER: ${err.message}`);
-        }
-    };
+        res.status(404).send(`Ha ocurrido un error en el controlador DELETE_USER: ${err.message}`);
+    }
+};
