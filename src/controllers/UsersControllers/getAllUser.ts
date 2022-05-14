@@ -11,6 +11,7 @@ export const GET_ALL_USER = async (req: Request, res: Response, next: NextFuncti
             if(allUsers){
                 allUsers = allUsers.map((el: any) => {
                     return({
+                        _id: el._id,
                         first_name: el.first_name,
                         last_name: el.last_name,
                         user_name: el.user_name,
