@@ -42,7 +42,7 @@ export const POST_POST = async (req: Request, res: Response) => {
       }
     }
   } catch (err: string | any) {
-
-    res.status(400).json(`Error en el controller GET_POSTS_BY_WORD: ${err.message}`);
+    
+    res.status(400).json(`Error en el controller POST_POST: ${err.message}`);
   }
 };

@@ -18,7 +18,8 @@ export const EDIT_USER = async (req: Request, res: Response) => {
             avatar,
             biography,
             github,
-            linkedin
+            linkedin,
+            isBanned
         } = req.body;
 
         if (!id) {
@@ -64,7 +65,8 @@ export const EDIT_USER = async (req: Request, res: Response) => {
                 avatar: avatar && avatar,
                 biography: biography && biography,
                 github: github && github,
-                linkedin: linkedin && linkedin
+                linkedin: linkedin && linkedin,
+                isBanned: isBanned && isBanned
             });
             res.status(200).json(`${userEdited.matchedCount} document has been matched and ${userEdited.modifiedCount} document has been modified `);
         }

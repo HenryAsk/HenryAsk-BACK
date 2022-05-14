@@ -12,7 +12,7 @@ export const GET_USER_BY_ID = async (req: Request, res: Response) => {
     const { id } = req.params;
 
     if (id) {
-      let userById = await User.findOne({ _id: id })
+      let userById = await User.findOne({ _id: id });
 
       if (userById) {
         userById = {
@@ -32,6 +32,8 @@ export const GET_USER_BY_ID = async (req: Request, res: Response) => {
           linkedin: userById.linkedin,
           own_henry_coin: userById.own_henry_coin,
           give_henry_coin: userById.give_henry_coin,
+          isBanned: userById.isBanned,
+          createdAt: userById.createdAt
         };
           const userPosts = await PostModel.find({owner: id});
           const userAnswers = await AnswerModel.find({owner: id});
@@ -47,6 +49,7 @@ export const GET_USER_BY_ID = async (req: Request, res: Response) => {
             theorics: userTheorics,
             exercises: userExercises,
           }
+
         res.status(200).json(userById);
       } else {
         res.status(404).send("No se encontró el usuario requerido.");

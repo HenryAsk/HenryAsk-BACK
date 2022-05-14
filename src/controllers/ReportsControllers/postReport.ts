@@ -3,16 +3,25 @@ import { ReportModel, Report } from "../../models/Reports";
 
 export const CREATE_REPORT = async(req: Request, res: Response) => {
     try{
-        const { owner, description, post, answer, comment } = req.body;
+        const { 
+            owner, 
+            description, 
+            post, 
+            answer, 
+            comment, 
+            status, 
+            reason } = req.body;
 
         if(owner && description){
             if(post || answer || comment){
                 const reportCreated: Report = await ReportModel.create({
-                    owner,
+                    owner: owner && owner._id,
                     description,
-                    post,
-                    answer,
-                    comment
+                    post: post && post._id,
+                    answer: answer && answer._id,
+                    comment: comment && comment._id,
+                    status,
+                    reason
                 });
 
                 res.status(200).json(reportCreated);

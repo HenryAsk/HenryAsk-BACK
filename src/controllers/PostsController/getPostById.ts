@@ -21,7 +21,7 @@ export const GET_POST_BY_ID = async (req: Request, res: Response, next: NextFunc
     
                     const postAnswers = await AnswerModel.find({ post: id })
                     .populate("owner", "profile_picture user_name ");
-                    console.log(postAnswers)
+                    
                     searchedPostObject.answers = postAnswers;
 
                     res.status(200).json(searchedPostObject);
