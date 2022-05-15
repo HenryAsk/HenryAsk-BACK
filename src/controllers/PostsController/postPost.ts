@@ -3,7 +3,7 @@ import { PostModel } from "../../models/Posts";
 
 export const POST_POST = async (req: Request, res: Response) => {
   try {
-    const { question, tags, description, open, owner: { _id }, type } =
+    const { question, tags, description, open, owner: { _id }, type  } =
       req.body;
     let createPost;
 

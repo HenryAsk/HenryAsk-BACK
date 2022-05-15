@@ -88,6 +88,9 @@ export class User extends TimeStamps{
 
     @prop({ type: () => Boolean, default: false})
     isBanned: boolean
+
+    @prop({ type: () => Date })
+    createdAt?: Date | undefined;
 }
 
 export const UserModel = getModelForClass(User);

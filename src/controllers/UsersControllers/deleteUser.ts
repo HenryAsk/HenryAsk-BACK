@@ -8,8 +8,16 @@ export const DELETE_USER = async (req: Request, res: Response) => {
 
         if (id) {
 
-            const allChildsDeleted = await findOrDeleteAllChildsFromPostByOwnerOrPost({method:"delete",by:"owner",input:id})
-            const allCreationsByOwnerDeleted = await findOrdeleteAllCreatedByOwner({method:"delete",owner:id})
+            const allChildsDeleted = await findOrDeleteAllChildsFromPostByOwnerOrPost(
+                {
+                method:"delete",
+                by:"owner",
+                input:id
+            })
+            const allCreationsByOwnerDeleted = await findOrdeleteAllCreatedByOwner(
+                {method:"delete",
+                owner:id
+            })
 
             const userDeleted = await UserModel.deleteOne({ _id: id });
 
@@ -26,7 +34,7 @@ export const DELETE_USER = async (req: Request, res: Response) => {
         } else{
             throw new Error("Ingrese un id del usuario que desea borrar.")
         }
-        } catch (err: any | unknown) {
+    } catch (err: any | unknown) {
 
             res.status(400).send(`Ha ocurrido un error en el controller DELETE_USER: ${err.message}`);
         }
