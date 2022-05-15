@@ -11,6 +11,14 @@ export const GET_ALL_USER = async (
     try {
       let allUsers = await Users.find({});
 
+      // let dateActual: Date = new Date();
+      // const dayDate: number = dateActual.getDay();
+      // let resetHenryCoin: number = allUsers.own_henry_coin;
+
+      // if(dayDate === 6) {
+      //   resetHenryCoin = 5;
+      // };
+
       if (allUsers) {
         allUsers = allUsers.map((el: any) => {
           return {

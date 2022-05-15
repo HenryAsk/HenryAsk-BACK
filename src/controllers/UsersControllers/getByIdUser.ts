@@ -14,6 +14,14 @@ export const GET_USER_BY_ID = async (req: Request, res: Response) => {
     if (id) {
       let userById = await User.findOne({ _id: id });
 
+      let dateActual: Date = new Date();
+      const dayDate: number = dateActual.getDay();
+      let resetHenryCoin: number = userById.own_henry_coin;
+
+      if(dayDate === 6) {
+        resetHenryCoin = 5;
+      };
+
       if (userById) {
         userById = {
           _id: userById.id,
@@ -30,10 +38,9 @@ export const GET_USER_BY_ID = async (req: Request, res: Response) => {
           biography: userById.biography,
           github: userById.github,
           linkedin: userById.linkedin,
-          own_henry_coin: userById.own_henry_coin,
+          own_henry_coin: resetHenryCoin,
           give_henry_coin: userById.give_henry_coin,
-          isBanned: userById.isBanned,
-          createdAt: userById.createdAt
+          isBanned: userById.isBanned
         };
           const userPosts = await PostModel.find({owner: id});
           const userAnswers = await AnswerModel.find({owner: id});
