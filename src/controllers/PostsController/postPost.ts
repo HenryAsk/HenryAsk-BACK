@@ -27,7 +27,6 @@ export const POST_POST = async (req: Request, res: Response) => {
           open,
           owner: _id,
           type,
-          bestAnswer: "",
         };
         const postCreated = await PostModel.create(createPost)
 
