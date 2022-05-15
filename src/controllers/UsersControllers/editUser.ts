@@ -19,7 +19,9 @@ export const EDIT_USER = async (req: Request, res: Response) => {
             biography,
             github,
             linkedin,
-            isBanned
+            isBanned,
+            own_henry_coin,
+            give_henry_coin
         } = req.body;
 
         if (!id) {
@@ -66,7 +68,9 @@ export const EDIT_USER = async (req: Request, res: Response) => {
                 biography: biography && biography,
                 github: github && github,
                 linkedin: linkedin && linkedin,
-                isBanned: isBanned && isBanned
+                isBanned: isBanned && isBanned,
+                own_henry_coin: own_henry_coin && own_henry_coin,
+                give_henry_coin: give_henry_coin && give_henry_coin
             });
             res.status(200).json(`${userEdited.matchedCount} document has been matched and ${userEdited.modifiedCount} document has been modified `);
         }

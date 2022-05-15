@@ -20,6 +20,14 @@ export const GET_USER_BY_MAIL = async ( req: Request, res: Response, next: NextF
           returnOriginal: false,
           upsert:true
         });
+
+        let dateActual: Date = new Date();
+        const dayDate: number = dateActual.getDay();
+        let resetHenryCoin: number = userByMail.own_henry_coin;
+
+        if(dayDate === 6) {
+          resetHenryCoin = 5;
+        };
   
         if (userByMail) {
           userByMail = {
@@ -37,7 +45,7 @@ export const GET_USER_BY_MAIL = async ( req: Request, res: Response, next: NextF
             biography: userByMail.biography,
             github: userByMail.github,
             linkedin: userByMail.linkedin,
-            own_henry_coin: userByMail.own_henry_coin,
+            own_henry_coin: resetHenryCoin,
             give_henry_coin: userByMail.give_henry_coin,
             isBanned: userByMail.isBanned
           };
