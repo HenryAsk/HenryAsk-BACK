@@ -22,4 +22,6 @@ export interface UserMapped {
   own_henry_coin: number
   give_henry_coin: number
   isBanned: boolean
+  createdAt: Date | undefined
+  coffee: string | undefined
 }

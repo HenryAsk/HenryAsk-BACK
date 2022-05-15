@@ -48,7 +48,9 @@ export const GET_USER_BY_MAIL = async (req: Request, res: Response, next: NextFu
             linkedin: userByMail.linkedin,
             own_henry_coin: resetHenryCoin,
             give_henry_coin: userByMail.give_henry_coin,
-            isBanned: userByMail.isBanned
+            isBanned: userByMail.isBanned,
+            createdAt: userByMail.createdAt,
+            coffee: userByMail.coffee
           };
 
           res.status(200).json(userByMailMapped);

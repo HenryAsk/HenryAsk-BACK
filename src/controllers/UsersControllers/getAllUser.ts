@@ -32,6 +32,8 @@ export const GET_ALL_USER = async (
             own_henry_coin: el.own_henry_coin,
             give_henry_coin: el.give_henry_coin,
             isBanned: el.isBanned,
+            createdAt: el.createdAt,
+            coffee: el.coffee
           })
         });
 
