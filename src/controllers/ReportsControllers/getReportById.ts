@@ -24,7 +24,7 @@ export const GET_REPORT_BY_ID = async (req: Request, res: Response, next: NextFu
             }
     
         } catch(err: any | unknown){
-            res.status(404).send(err.message);
+            res.status(404).send(`Algo salió mal en el controller GET_REPORT_BY_ID: ${err.message}`);
         }
     };
 };

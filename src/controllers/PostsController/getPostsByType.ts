@@ -26,7 +26,7 @@ export const GET_POST_BY_TYPE = async (req: Request, res: Response, next: NextFu
                 }
             }
         } catch (err: string | any) {
-            res.status(400).send(`Error en el controller GET_POST_BY_TYPES: ${err.message}`);
+            res.status(400).send(`Error en el controller GET_POST_BY_TYPE: ${err.message}`);
         }
     }
 

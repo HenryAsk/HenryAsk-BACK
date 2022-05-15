@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
-const User = require('../../models/Users');
+import { UserModel } from '../../models/Users';
+import { UserMapped } from "../../interfaces/userInterfaces";
 
 export const GET_USER_BY_MAIL = async ( req: Request, res: Response, next: NextFunction ) => {
   if(req.query.user_name || req.params.id) next();
@@ -11,7 +12,7 @@ export const GET_USER_BY_MAIL = async ( req: Request, res: Response, next: NextF
       if (!email) next();
   
       if (email) {
-        let userByMail = await User.findOneAndUpdate({
+        const userByMail = await UserModel.findOneAndUpdate({
           email: email
         }, {
           $setOnInsert: { hola: 'me cree'}
@@ -20,9 +21,9 @@ export const GET_USER_BY_MAIL = async ( req: Request, res: Response, next: NextF
           returnOriginal: false,
           upsert:true
         });
-  
+        
         if (userByMail) {
-          userByMail = {
+          const userByMailMapped: UserMapped = {
             _id : userByMail._id,
             first_name: userByMail.first_name,
             last_name: userByMail.last_name,
@@ -42,13 +43,13 @@ export const GET_USER_BY_MAIL = async ( req: Request, res: Response, next: NextF
             isBanned: userByMail.isBanned
           };
   
-          res.status(200).json(userByMail);
+          res.status(200).json(userByMailMapped);
         } else {
-          res.status(404).send("No se encontró el usuario requerido.");
+          res.status(400).send("No se encontró el usuario requerido.");
         }
       }
     } catch (err: any | unknown) {
-      res.status(404).send(err.message);
+      res.status(400).send(`Error en el controller GET_USER_BY_MAIL: ${err.message}`);
     }
   }
 };

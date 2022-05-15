@@ -1,15 +1,16 @@
 import { NextFunction, Request, Response } from "express";
-const Users = require('../../models/Users');
+import { UserMapped } from "../../interfaces/userInterfaces";
+import { User, UserModel } from '../../models/Users';
 
 export const GET_ALL_USER = async (req: Request, res: Response, next: NextFunction) => {
     if(req.query.email || req.query.user_name || req.params.id) next();
 
     else{
         try{
-            let allUsers = await Users.find({})
+            const allUsers: Array<User> = await UserModel.find({});
     
             if(allUsers){
-                allUsers = allUsers.map((el: any) => {
+                const allUsersMapped: Array<UserMapped> = allUsers.map((el: any) => {
                     return({
                         _id: el._id,
                         first_name: el.first_name,
@@ -31,12 +32,12 @@ export const GET_ALL_USER = async (req: Request, res: Response, next: NextFuncti
                     })
                 });
     
-                res.status(200).json(allUsers);
+                res.status(200).json(allUsersMapped);
             } else {
                 res.status(404).send('No se han encontrado usuarios.')
             }
         } catch(err: any | unknown){
-            res.status(404).send(err.message);
+            res.status(404).send(`Error en controller GET_ALL_USER :${err.message}`);
         }
     };
 };

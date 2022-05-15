@@ -33,6 +33,6 @@ export const CREATE_REPORT = async(req: Request, res: Response) => {
             throw new Error('Ingrese un owner y una descripción válidos.');
         }
     } catch(err: any | unknown){
-        res.status(404).send(err.message);
+        res.status(404).send(`Algo salió mal en el controller CREATE_REPORT: ${err.message}`);
     }
 };

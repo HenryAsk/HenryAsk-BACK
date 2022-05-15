@@ -80,7 +80,7 @@ export class User extends TimeStamps{
     @prop({ type: () => String })
     linkedin: string
     
-    @prop({ type: () => Number, default: 0 })
+    @prop({ type: () => Number, default: 5 })
     own_henry_coin: number
     
     @prop({ type: () => Number, default: 0 })
@@ -91,4 +91,3 @@ export class User extends TimeStamps{
 }
 
 export const UserModel = getModelForClass(User);
-module.exports = UserModel;

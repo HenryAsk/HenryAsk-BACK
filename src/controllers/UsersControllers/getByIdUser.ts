@@ -1,21 +1,21 @@
 import { Request, Response } from "express";
+import { UserMapped } from "../../interfaces/userInterfaces";
 import { AnswerModel } from "../../models/Answers";
 import { CommentModel } from "../../models/Comments";
 import { ExerciseModel } from "../../models/Exercises";
 import { PostModel } from "../../models/Posts";
 import { TheoricModel } from "../../models/Theorics";
-
-const User = require("../../models/Users");
+import { UserModel } from "../../models/Users";
 
 export const GET_USER_BY_ID = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
 
     if (id) {
-      let userById = await User.findOne({ _id: id })
+      const userById = await UserModel.findOne({ _id: id })
 
       if (userById) {
-        userById = {
+        const userByIdMapped : UserMapped = {
           _id: userById.id,
           first_name: userById.first_name,
           last_name: userById.last_name,
@@ -40,20 +40,20 @@ export const GET_USER_BY_ID = async (req: Request, res: Response) => {
           const userTheorics = await TheoricModel.find({owner: id});
           const userExercises = await ExerciseModel.find({owner: id});
         
-          userById={
-            ...userById,
+          const userByIdMappedAndPopulated ={
+            ...userByIdMapped,
             posts: userPosts,
             answers: userAnswers,
             comments: userComments,
             theorics: userTheorics,
             exercises: userExercises,
           }
-        res.status(200).json(userById);
+        res.status(200).json(userByIdMappedAndPopulated);
       } else {
-        res.status(404).send("No se encontró el usuario requerido.");
+        res.status(400).send("No se encontró el usuario requerido.");
       }
     }
   } catch (err: any | unknown) {
-    res.status(404).send(err.message);
+    res.status(400).send(`Error en controller GET_USER_BY_ID: ${err.message}`);
   }
 };
