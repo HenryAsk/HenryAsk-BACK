@@ -28,8 +28,8 @@ export const GET_USER_BY_MAIL = async (req: Request, res: Response, next: NextFu
           const dayDate: number = dateActual.getDay();
           let resetHenryCoin: number = userByMail.own_henry_coin;
           let resetUserCoin: Array<string> = userByMail.userCoin;
-
-          if (dayDate === 6) {
+          
+          if (resetHenryCoin !== 5 && dayDate === 1) {
             resetHenryCoin = 5;
             resetUserCoin = [];
           };

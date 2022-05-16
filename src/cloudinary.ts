@@ -25,3 +25,8 @@ export const uploadBanner = async (filePath: string) => {
     });
 };
 
+export const uploadTheoric = async (filePath: string) => {
+    return await cloudinary.uploader.upload(filePath, {
+        folder: 'images_theoric'
+    });
+};
