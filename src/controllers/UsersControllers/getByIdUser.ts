@@ -18,10 +18,13 @@ export const GET_USER_BY_ID = async (req: Request, res: Response) => {
         let dateActual: Date = new Date();
         const dayDate: number = dateActual.getDay();
         let resetHenryCoin: number = userById.own_henry_coin;
+        let resetUserCoin: Array<string> = userById.userCoin;
 
         if (dayDate === 6) {
           resetHenryCoin = 5;
+          resetUserCoin = [];
         };
+
         const userByIdMapped: UserMapped = {
           _id: userById.id,
           first_name: userById.first_name,
@@ -41,7 +44,8 @@ export const GET_USER_BY_ID = async (req: Request, res: Response) => {
           give_henry_coin: userById.give_henry_coin,
           isBanned: userById.isBanned,
           createdAt:userById.createdAt,
-          coffee: userById.coffee
+          coffee: userById.coffee,
+          userCoin: resetUserCoin
         };
         const userPosts = await PostModel.find({ owner: id });
         const userAnswers = await AnswerModel.find({ owner: id });

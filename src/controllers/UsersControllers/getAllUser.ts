@@ -33,7 +33,8 @@ export const GET_ALL_USER = async (
             give_henry_coin: el.give_henry_coin,
             isBanned: el.isBanned,
             createdAt: el.createdAt,
-            coffee: el.coffee
+            coffee: el.coffee,
+            userCoin: el.userCoin
           })
         });
 

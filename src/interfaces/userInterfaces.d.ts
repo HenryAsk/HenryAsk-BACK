@@ -24,4 +24,5 @@ export interface UserMapped {
   isBanned: boolean
   createdAt: Date | undefined
   coffee: string | undefined
+  userCoin: Array
 }

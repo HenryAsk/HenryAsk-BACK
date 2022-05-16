@@ -17,20 +17,23 @@ export const GET_USER_BY_MAIL = async (req: Request, res: Response, next: NextFu
         }, {
           $setOnInsert: { hola: 'me cree' }
         },
-          {
-            returnOriginal: false,
-            upsert: true
-          });
+        {
+          returnOriginal: false,
+          upsert: true
+        });
 
 
         if (userByMail) {
           let dateActual: Date = new Date();
           const dayDate: number = dateActual.getDay();
           let resetHenryCoin: number = userByMail.own_henry_coin;
+          let resetUserCoin: Array<string> = userByMail.userCoin;
 
           if (dayDate === 6) {
             resetHenryCoin = 5;
+            resetUserCoin = [];
           };
+
           const userByMailMapped: UserMapped = {
             _id: userByMail._id,
             first_name: userByMail.first_name,
@@ -50,7 +53,8 @@ export const GET_USER_BY_MAIL = async (req: Request, res: Response, next: NextFu
             give_henry_coin: userByMail.give_henry_coin,
             isBanned: userByMail.isBanned,
             createdAt: userByMail.createdAt,
-            coffee: userByMail.coffee
+            coffee: userByMail.coffee,
+            userCoin: resetUserCoin
           };
 
           res.status(200).json(userByMailMapped);

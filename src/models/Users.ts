@@ -91,6 +91,9 @@ export class User extends TimeStamps{
 
     @prop({ type: () => String, required: false, default: ""})
     coffee?: string
+
+    @prop({ type: () => Array, default: [] })
+    userCoin: Array<string>
 }
 
 export const UserModel = getModelForClass(User);

@@ -38,7 +38,8 @@ export const GET_BY_USER_NAME = async (
             give_henry_coin: userByName.give_henry_coin,
             isBanned: userByName.isBanned,
             createdAt: userByName.createdAt,
-            coffee: userByName.coffee
+            coffee: userByName.coffee,
+            userCoin: userByName.userCoin
           };
 
           res.status(200).json(userByNameMapped);
