@@ -7,11 +7,11 @@ function BinarioADecimal(num) {
   return result;
 }
 
-describe("BinarioADecimal(num)", function () {
-  it("should return 2", function () {
-    return expect(BinarioADecimal("10")).toBe(2);
-  });
-  it("should return 7", function () {
-    return expect(BinarioADecimal("111")).toBe(7);
-  });
-});
+// describe("BinarioADecimal(num)", function () {
+//   it("should return 2", function () {
+//     return expect(BinarioADecimal("10")).toBe(2);
+//   });
+//   it("should return 7", function () {
+//     return expect(BinarioADecimal("111")).toBe(7);
+//   });
+// });
