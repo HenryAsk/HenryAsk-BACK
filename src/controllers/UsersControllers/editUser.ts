@@ -18,6 +18,7 @@ export const EDIT_USER = async (req: Request, res: Response) => {
             avatar,
             biography,
             github,
+            coffee,
             linkedin,
             isBanned,
             own_henry_coin,
@@ -71,7 +72,8 @@ export const EDIT_USER = async (req: Request, res: Response) => {
                     linkedin: linkedin && linkedin,
                     isBanned: isBanned && isBanned,
                     own_henry_coin: own_henry_coin && own_henry_coin,
-                    give_henry_coin: give_henry_coin && give_henry_coin
+                    give_henry_coin: give_henry_coin && give_henry_coin,
+                    coffee: coffee && coffee
                 });
 
                 res.status(200).json(`${userEdited.matchedCount} document has been matched and ${userEdited.modifiedCount} document has been modified `);
