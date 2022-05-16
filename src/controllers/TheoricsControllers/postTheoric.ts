@@ -1,5 +1,6 @@
 import { Response, Request } from "express";
 import { TheoricModel } from "../../models/Theorics";
+import { uploadTheoric } from "../../cloudinary";
 import TheoricHasBeenCreated from "../../notifications/executors/TheoricCreation";
 
 /*Este es el controller para postear un contenido teórico. Primero se revisa qué variables se traen del FRONT, 
@@ -24,17 +25,28 @@ export const POST_THEORIC = async (req: Request, res: Response) => {
           "Ya existe un contenido teórico con este título o contenido."
         );
       }
+        
+      let image;
+
+      if(images && images !== ""){
+        image = await uploadTheoric(images);
+        image = image.secure_url;
+      }
+      else {
+        image = "";
+      }
+
+      const theoricCreated = await TheoricModel.create({
+        owner,
+        title,
+        content,
+        author,
+        images: image,
+        comments: comments?.length && comments,
+      });
+      res.status(200).json(theoricCreated);
+      TheoricHasBeenCreated(owner);
     }
-    const theoricCreated = await TheoricModel.create({
-      owner,
-      title,
-      content,
-      author,
-      images: images?.length && images,
-      comments: comments?.length && comments,
-    });
-    res.status(200).json(theoricCreated);
-    TheoricHasBeenCreated(owner);
   } catch (err: string | any) {
     res
       .status(400)

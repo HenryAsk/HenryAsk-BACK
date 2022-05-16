@@ -20,7 +20,7 @@ export const GET_USER_BY_ID = async (req: Request, res: Response) => {
         let resetHenryCoin: number = userById.own_henry_coin;
         let resetUserCoin: Array<string> = userById.userCoin;
 
-        if (dayDate === 6) {
+        if (resetHenryCoin !== 5 && dayDate === 1) {
           resetHenryCoin = 5;
           resetUserCoin = [];
         };

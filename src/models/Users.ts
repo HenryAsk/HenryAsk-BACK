@@ -56,7 +56,7 @@ export class User extends TimeStamps{
     @prop({ type: () => String, default: "" })
     city?: string;
 
-    @prop({ unique: true, required: false, default: "" })
+    @prop({ required: false, default: "" })
     user_name: string;
 
     @prop({ lowercase: true, default: "" })
