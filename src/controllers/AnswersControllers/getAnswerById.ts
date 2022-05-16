@@ -33,7 +33,7 @@ export const GET_ANSWER_BY_ID = async (req: Request, res: Response, next: NextFu
             }
     
         } catch(err: any | string){
-            res.status(404).send(err.message);
+            res.status(400).send(`An error has been ocurred in controller GET_ANSWER_BY_ID: ${err.message}`);
         }
     }
 

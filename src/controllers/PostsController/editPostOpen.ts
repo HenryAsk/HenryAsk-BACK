@@ -20,7 +20,7 @@ export const EDIT_POST_OPEN = async (req: Request, res: Response, next: NextFunc
       res.json(`${oldPost.modifiedCount} post ${open? "abierto":"cerrado"} correctamente.`);     
 
   } catch(err: string | any){
-      res.status(404).send(`Error en el controller TOGGLE_OPEN_POST: ${err.message}`);
+      res.status(400).send(`Error en el controller EDIT_POST_OPEN: ${err.message}`);
   }
   }
 };

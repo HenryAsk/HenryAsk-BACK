@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { ReportModel, Report } from "../../models/Reports";
+import { ReportModel } from "../../models/Reports";
 
 export const GET_REPORT = async (req: Request, res: Response, next: NextFunction) => {
     if(req.params.id) next();
@@ -19,7 +19,7 @@ export const GET_REPORT = async (req: Request, res: Response, next: NextFunction
             }
             
         } catch(err: any | unknown){
-            res.status(404).send(err.message);
+            res.status(404).send(`Algo salió mal en el controller GET_REPORT: ${err.message}`);
         }
     };
 };

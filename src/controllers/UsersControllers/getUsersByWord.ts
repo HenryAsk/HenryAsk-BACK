@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { User } from "../../models/Users";
-const UserModel = require("../../models/Users");
+import { UserModel, User} from "../../models/Users";
 
 export const GET_USER_BY_WORD = async (
   req: Request,

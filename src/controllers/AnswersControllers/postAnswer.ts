@@ -26,6 +26,6 @@ export const POST_ANSWER = async (req: Request, res: Response) => {
       }
     }
   } catch (err: any | unknown) {
-    res.status(404).send(err.message);
+    res.status(400).send(`An error has been ocurred in controller POST_ANSWER: ${err.message}`);
   }
 };

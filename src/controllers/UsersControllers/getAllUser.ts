@@ -1,5 +1,6 @@
-import e, { NextFunction, Request, Response } from "express";
-const Users = require("../../models/Users");
+import { NextFunction, Request, Response } from "express";
+import { UserMapped } from "../../interfaces/userInterfaces";
+import { User, UserModel } from '../../models/Users';
 
 export const GET_ALL_USER = async (
   req: Request,
@@ -9,19 +10,11 @@ export const GET_ALL_USER = async (
   if (req.query.email || req.query.user_name || req.params.id) next();
   else {
     try {
-      let allUsers = await Users.find({});
-
-      // let dateActual: Date = new Date();
-      // const dayDate: number = dateActual.getDay();
-      // let resetHenryCoin: number = allUsers.own_henry_coin;
-
-      // if(dayDate === 6) {
-      //   resetHenryCoin = 5;
-      // };
+      const allUsers: Array<User> = await UserModel.find({});
 
       if (allUsers) {
-        allUsers = allUsers.map((el: any) => {
-          return {
+        const allUsersMapped: Array<UserMapped> = allUsers.map((el: any) => {
+          return ({
             _id: el._id,
             first_name: el.first_name,
             last_name: el.last_name,
@@ -40,15 +33,17 @@ export const GET_ALL_USER = async (
             give_henry_coin: el.give_henry_coin,
             isBanned: el.isBanned,
             createdAt: el.createdAt,
-          };
+            coffee: el.coffee,
+            userCoin: el.userCoin
+          })
         });
 
-        res.status(200).json(allUsers);
+        res.status(200).json(allUsersMapped);
       } else {
-        res.status(404).send("No se han encontrado usuarios.");
+        res.status(400).send('No se han encontrado usuarios.')
       }
     } catch (err: any | unknown) {
-      res.status(404).send(err.message);
+      res.status(400).send(`Error en controller GET_ALL_USER :${err.message}`);
     }
-  }
+  };
 };

@@ -24,7 +24,7 @@ export const GET_ANSWER_BY_POST_ID = async (req: Request, res: Response, next: N
                 }
             }
         } catch (err: any | unknown) {
-            res.status(404).send(err.message);
+            res.status(400).send(`An error has been ocurred in controller GET_ANSWER_BY_POST_ID: ${err.message}`);
         }
     }
 

@@ -27,6 +27,6 @@ export const DELETE_THEORIC = async (req: Request, res: Response) => {
     }
   } catch(err: string | any){
 
-    res.status(400).json(`Algo salió mal en el controller deleteTheoric: ${err.message}`);
+    res.status(400).json(`Algo salió mal en el controller DELETE_THEORIC: ${err.message}`);
   }
 };

@@ -18,6 +18,6 @@ export const DELETE_REPORT = async (req: Request, res: Response) => {
             throw new Error("Ingrese un id del usuario que desea borrar.")
         }
     } catch(err: any | unknown){
-        res.status(404).send(err.message);
+        res.status(404).send(`Algo salió mal en el controller DELETE_REPORT: ${err.message}`);
     }
 };

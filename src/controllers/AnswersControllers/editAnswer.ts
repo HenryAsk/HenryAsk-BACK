@@ -16,6 +16,6 @@ export const EDIT_ANSWER = async (req: Request, res: Response) => {
         res.status(200).json(`${editAnswer.modifiedCount} respuesta modificada`);
 
     } catch(err: any | unknown){
-        res.status(404).send(err.message);
+        res.status(400).send(`An error has been ocurred in controller EDIT_ANSWER: ${err.message}`);
     }
 };
