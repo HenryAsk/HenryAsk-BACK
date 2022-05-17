@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { parseStringToFunction } from "../../services/parseService";
+import { parseStringToFunction } from "../../services/ParseService";
 import {
   testBinarioADecimal,
   testClavesUnicas,
