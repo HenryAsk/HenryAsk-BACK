@@ -1,19 +1,22 @@
-// import { Request, Response } from "express";
-const proces = require("process");
-const fs = require("fs");
+import { Request, Response } from "express";
 
 export const TEST_CODE = async (req: Request, res: Response) => {
-  // const { code, test } = req.body;
-  // try {
-  //   fs.writeFileSync("./src/controllers/testingControllers/check.test.js", code, test);
-  //   fs.createReadStream("./check.ts");
-  //   console.log("LOGRADO");
-  //   res.json({ msg: "Checkeado con exito!" });
-  // } catch (err: string | any) {
-  //   res
-  //     .status(400)
-  //     .json(
-  //       `An error has been ocurred in controller TEST_CODE: ${err.message}`
-  //     );
-  // }
+  const { code } = req.body;
+  try {
+    // if (code.charAt(9) === "B") {
+    //   const func = `${code}`
+    //   const que = bAd(func(10));
+    //   if (que === 2) {
+    //     console.log("LOGRADO");
+    //     res.json({ status: "LOGRADO" });
+    //   } else {
+    //     console.log("NO LOGRADO");
+    //     res.json("NO LOGRADO");
+    //   }
+    // } else {
+    //   console.log("NO");
+    // }
+  } catch (err: string | any) {
+    console.log(err);
+  }
 };
