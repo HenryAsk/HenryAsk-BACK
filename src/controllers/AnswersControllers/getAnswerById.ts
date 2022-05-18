@@ -17,7 +17,7 @@ export const GET_ANSWER_BY_ID = async (req: Request, res: Response, next: NextFu
                     post: 1
                 })
                 .populate("post", "_id")
-                .populate("owner", "profile_picture user_name avatar");
+                .populate("owner", "profile_picture user_name avatar give_henry_coin");
         
                 if(!answerById){
                     throw new Error ('No hemos podido encontrar la respuesta solicitada. Por favor, verifique el id.');
