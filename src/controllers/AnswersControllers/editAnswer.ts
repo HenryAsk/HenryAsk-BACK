@@ -3,7 +3,7 @@ import { AnswerModel } from '../../models/Answers';
 
 export const EDIT_ANSWER = async (req: Request, res: Response) => {
     try{
-        const { id, content } = req.body;
+        const { id, content, give_henry_coin } = req.body;
 
         if(!id || !content){
             throw new Error ('Id y content deben ser especificados.')
