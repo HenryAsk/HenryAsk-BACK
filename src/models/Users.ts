@@ -56,9 +56,10 @@ export class User extends TimeStamps{
     @prop({ type: () => String, default: "" })
     city?: string;
 
-    @prop({ unique: true, required: false, default: 
-        `User${Math.floor(Math.random()*1000+Math.random()*100+Math.random()*10)}
-        _${Math.floor(Math.random()*1000+Math.random()*100+Math.random()*10)}` 
+    @prop({ 
+        unique: true, 
+        required: false, 
+        default: `User${Math.floor(Math.random()*1000+Math.random()*100+Math.random()*10)}_${Math.floor(Math.random()*1000+Math.random()*100+Math.random()*10)}` 
     })
     user_name: string;
 
