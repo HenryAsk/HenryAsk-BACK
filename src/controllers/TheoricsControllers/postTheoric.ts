@@ -28,9 +28,11 @@ export const POST_THEORIC = async (req: Request, res: Response) => {
         
       let image;
 
-      if(images && images !== ""){
-        image = await uploadTheoric(images);
-        image = image.secure_url;
+      if(images.length){
+        image = await Promise.all(images.map(async (el: string) => {
+          const uploadImg = await uploadTheoric(el);
+          return uploadImg.secure_url;
+        }));
       }
       else {
         image = "";

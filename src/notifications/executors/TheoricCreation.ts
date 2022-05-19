@@ -1,17 +1,22 @@
 import { transportator } from "../transporters";
 import { TheoricCreation } from "../notifications";
-const User = require("../../models/Users");
+import { UserModel } from "../../models/Users";
 
 const TheoricHasBeenCreated = async (InstructorId: string) => {
   try {
-    const DataOfInstructor = await User.findOne({ _id: InstructorId });
+    const DataOfInstructor = await UserModel.findOne({ _id: InstructorId });
 
-    const FullName =
+    if(DataOfInstructor){
+      const FullName =
       DataOfInstructor.first_name + " " + DataOfInstructor.last_name;
 
-    const EmailTo = DataOfInstructor.email;
+      const EmailTo = DataOfInstructor.email;
+      transportator(TheoricCreation(EmailTo, FullName));
+    }
+    else {
+      throw new Error ('Usuario no encontrado.');
+    }
 
-    transportator(TheoricCreation(EmailTo, FullName));
   } catch (err) {
     console.log(err);
   }
